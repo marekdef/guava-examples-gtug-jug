@@ -1,0 +1,30 @@
+package org.gtug.lodz.collections;
+
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
+
+public class LegacyMultiMap<K, V> {
+	private Map<K, Set<V>> internal = new HashMap<K, Set<V>>();
+	
+	public Set<V> get(K key) {
+		Set<V> existingValue = internal.get(key);
+		
+		if(existingValue != null)
+			return existingValue;
+		
+		Set<V> value = new HashSet<V>();
+		internal.put(key, value);
+		
+		return value;
+	}
+	
+	public void put(K key, V value) {
+		get(key).add(value);
+	}
+
+	public static <K, V> LegacyMultiMap<K, V> craete() {
+		return new LegacyMultiMap<K, V>();	
+	}
+}
