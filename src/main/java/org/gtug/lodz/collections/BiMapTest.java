@@ -1,6 +1,8 @@
 package org.gtug.lodz.collections;
 
+import java.util.AbstractMap;
 import java.util.Arrays;
+import java.util.Map.Entry;
 
 import org.fest.util.Collections;
 import org.junit.Before;
@@ -49,9 +51,10 @@ public class BiMapTest {
 		// then
 		assertThat(inverse.keySet()).containsOnly(
 				(Object[]) capitals.values().toArray(
-						new String[capitals.values().size()]));
-	}
-	
-	
+						new String[capitals.size()]));
 
+		assertThat(inverse.values()).containsOnly(
+				(Object[]) capitals.keySet().toArray(
+						new String[capitals.size()]));
+	}
 }
