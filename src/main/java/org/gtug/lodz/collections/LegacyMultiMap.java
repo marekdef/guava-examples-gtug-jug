@@ -23,8 +23,12 @@ public class LegacyMultiMap<K, V> {
 	public void put(K key, V value) {
 		get(key).add(value);
 	}
+	
+	public void remove(K key, V value) {
+		get(key).remove(value);
+	}
 
-	public static <K, V> LegacyMultiMap<K, V> craete() {
+	public static <K, V> LegacyMultiMap<K, V> create() {
 		return new LegacyMultiMap<K, V>();	
 	}
 }
