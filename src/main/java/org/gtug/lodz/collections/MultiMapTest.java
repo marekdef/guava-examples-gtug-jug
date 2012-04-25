@@ -9,11 +9,9 @@ import com.google.common.collect.HashMultimap;
 import com.google.common.collect.ImmutableSet;
 
 public class MultiMapTest {
-	private HashMultimap<String, String> family;
 
-	@Before
-	public void setUp() {
-		family = HashMultimap.create();
+	public HashMultimap<String, String> create() {
+		HashMultimap<String, String> family = HashMultimap.create();
 
 		family.put("Marek", "Ania");
 
@@ -24,21 +22,29 @@ public class MultiMapTest {
 		family.put("Eugeniusz", "Marek");
 		family.put("Eugeniusz", "Marek");
 
-		family.get("Krzysiek").add("Ania");
+		// does not blow even Piotr does not exist before
 		family.get("Piotr").remove("Ania");
+
+		return family;
 	}
 
 	@Test
 	public void testMultiMapCreation() {
-		assertThat(family.get("Krzysiek")).contains("Ania");
-		assertThat(family.get("Marek").size()).isEqualTo(1);
-		assertThat(family.get("Maria").size()).isEqualTo(2);
-		assertThat(family.get("Eugeniusz").size()).isEqualTo(2);
+		//given created map 
+		HashMultimap<String, String> family = create();
+		//when
+		
+		//then is correcly created
+		assertThat(family.get("Marek")).hasSize(1);
+		assertThat(family.get("Maria")).hasSize(2);
+		assertThat(family.get("Eugeniusz")).hasSize(2);
+		assertThat(family.get("Krzysiek")).isNotNull();
 	}
 
 	@Test
 	public void testMultiMapNoNullsValues() {
-		// LegacyMultiMap<String, String> family = LegacyMultiMap.create();
+		// given
+		HashMultimap<String, String> family = create();
 		// when
 
 		// then
@@ -48,19 +54,21 @@ public class MultiMapTest {
 
 	@Test
 	public void testMultiMapAdditionOnViews() {
-
-		// when
+		// given
+		HashMultimap<String, String> family = create();
+		// when operating on view
 		family.get("Piotr").addAll(ImmutableSet.of("Ania", "Krzysiek"));
-		// then
+		// then we get all added
 		assertThat(family.get("Piotr")).contains("Krzysiek", "Ania");
 	}
 
 	@Test
 	public void testMultiMapOnNull() {
 		// given
-		// when
+		HashMultimap<String, String> family = create();
+		// when putting null values
 		family.put(null, null);
-		// then
+		// then we get a set containing null
 		assertThat(family.get(null)).hasSize(1);
 		assertThat(family.get(null)).containsOnly(new Object[] { null });
 	}
