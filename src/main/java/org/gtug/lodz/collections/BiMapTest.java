@@ -1,8 +1,8 @@
 package org.gtug.lodz.collections;
 
 import static org.fest.assertions.Assertions.assertThat;
+import static org.fest.assertions.MapAssert.entry;
 
-import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
@@ -11,38 +11,42 @@ import com.google.common.collect.BiMap;
 import com.google.common.collect.HashBiMap;
 
 public class BiMapTest {
-	private HashBiMap<String, String> capitals;
-
 	@Rule
 	public ExpectedException thrown = ExpectedException.none();
 
-	@Before
-	public void setUp() {
-		capitals = HashBiMap.create();
+	public HashBiMap<String, String> create() {
+		HashBiMap<String, String> capitals = HashBiMap.create();
 
 		capitals.put("Germany", "Berlin");
 		capitals.put("Poland", "Warsaw");
 		capitals.put("Spain", "Madrid");
+
+		return capitals;
 	}
 
 	@Test
 	public void testBiMapCreationOnDuplicateValue() {
 		// given
-		// a map
+		HashBiMap<String, String> capitals = create();
 		thrown.expect(IllegalArgumentException.class);
-		// when
-
+		
+		// when we put already existing value  
 		capitals.put("Lithuania", "Warsaw");
-		// then
+		
+		// then test fails if no exception
 	}
 
 	@Test
 	public void testBiMapInverse() {
 		// given
-		// when
+		HashBiMap<String, String> capitals = create();
+		// when inverting a BiMap
 		BiMap<String, String> inverse = capitals.inverse();
 
-		// then
+		// then we get inverted entries
+		assertThat(inverse).includes(entry("Warsaw", "Poland"),
+				entry("Berlin", "Germany"));
+		// some unreadable assertions that array are invers
 		assertThat(inverse.keySet()).containsOnly(
 				(Object[]) capitals.values().toArray(
 						new String[capitals.size()]));
