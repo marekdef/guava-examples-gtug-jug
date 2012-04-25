@@ -9,53 +9,52 @@ import com.google.common.base.CharMatcher;
 public class CharMatcherTest {
 	@Test
 	public void testRetain() {
-		//given
+		// given
 		String phone = "517-725-068";
-		//when
+		// when
 		phone = CharMatcher.DIGIT.retainFrom(phone);
-		//then
+		// then
 		assertThat(phone).isEqualTo("517725068");
 	}
-	
+
 	@Test
 	public void testOrRemove() {
-		//given
+		// given
 		String label = "Marek Defeciński 32";
-		//when
+		// when
 		label = CharMatcher.DIGIT.or(CharMatcher.WHITESPACE).removeFrom(label);
-		//then
+		// then
 		assertThat(label).isEqualTo("MarekDefeciński");
 	}
-	
+
 	@Test
 	public void testRangeNegatedMatcher() {
-		//given
+		// given
 		String label = "Marek Defeciński 32";
-		//when
+		// when
 		label = CharMatcher.inRange('A', 'Z').negate().removeFrom(label);
-		//then
+		// then
 		assertThat(label).isEqualTo("MD");
 	}
-	
+
 	@Test
 	public void testAnyOfMatcher() {
-		//given
+		// given
 		String phone = "+48 517 725-068";
-		//when
+		// when
 		phone = CharMatcher.anyOf("-+").removeFrom(phone);
-		//then
+		// then
 		assertThat(phone).isEqualTo("48 517 725 068");
 	}
-	
+
 	@Test
 	public void testTrim() {
-		//given
+		// given
 		String phone = "    +48 517 725 068 ";
-		//when
+		// when
 		phone = CharMatcher.WHITESPACE.trimFrom(phone);
-		//then
+		// then
 		assertThat(phone).isEqualTo("+48 517 725 068");
 	}
-	
-	
+
 }

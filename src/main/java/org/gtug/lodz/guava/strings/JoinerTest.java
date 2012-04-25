@@ -50,7 +50,7 @@ public class JoinerTest {
 		public String toString() {
 			return String.format("%s %s %d", first, last, age);
 		}
-		
+
 		@Override
 		public int hashCode() {
 			return Objects.hashCode(first, last, age);

@@ -76,15 +76,15 @@ public class SplitterTest {
 	public void testSplitWithLimit() {
 		// given
 		// when using spliter on ; that trims result and stops on 3rd split
-		Iterable<String> split = Splitter.on(CharMatcher.anyOf(";,"))
-				.limit(3).trimResults().omitEmptyStrings()
+		Iterable<String> split = Splitter.on(CharMatcher.anyOf(";,")).limit(3)
+				.trimResults().omitEmptyStrings()
 				.split("JUG; GTUG, Łódź;; Guava");
 		// then it has correct size
 		assertThat(split).hasSize(3);
-		
+
 		// has fist 2 elements splitted
 		assertThat(split).contains("JUG", "GTUG");
-		
+
 		// the last is not splites
 		assertThat(Iterables.getLast(split)).isEqualTo("Łódź;; Guava");
 	}

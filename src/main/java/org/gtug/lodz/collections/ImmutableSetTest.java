@@ -50,11 +50,12 @@ public class ImmutableSetTest {
 
 	@Test
 	public void testImmutableEqual() {
-		//given
-		ImmutableSet<String> copyOf = ImmutableSet.of("Greece", "Spain", "France", "Germany", "Poland");
-		//when
+		// given
+		ImmutableSet<String> copyOf = ImmutableSet.of("Greece", "Spain",
+				"France", "Germany", "Poland");
+		// when
 
-		//then
+		// then
 		assertThat(copyOf).isEqualTo(COUNTRIES);
 	}
 }

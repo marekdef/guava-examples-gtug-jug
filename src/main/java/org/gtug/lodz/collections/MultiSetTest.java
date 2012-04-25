@@ -9,10 +9,10 @@ import org.junit.rules.ExpectedException;
 public class MultiSetTest {
 	@Rule
 	public ExpectedException thrown = ExpectedException.none();
-	
-	private LegacyMultiSet<Object> words = //HashMultiset.create();
-			LegacyMultiSet.create();
-	
+
+	private LegacyMultiSet<Object> words = // HashMultiset.create();
+	LegacyMultiSet.create();
+
 	@Test
 	public void testMultiSetCounts() {
 		// given

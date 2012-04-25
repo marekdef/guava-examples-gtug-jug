@@ -20,8 +20,7 @@ public class LegacyImmutableSet {
 	}
 
 	static {
-		Collections.unmodifiableSet(
-				new HashSet<String>(
-						Arrays.asList("Poland", "Germany", "France", "Spain", "Greece")));
+		Collections.unmodifiableSet(new HashSet<String>(Arrays.asList("Poland",
+				"Germany", "France", "Spain", "Greece")));
 	}
 }

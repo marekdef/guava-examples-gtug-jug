@@ -13,39 +13,38 @@ public class TableTest {
 
 	@Test
 	public void testTableCreation() {
-		//given
+		// given
 		Table<String, String, Double> distance = TreeBasedTable.create();
 
-		//when
+		// when
 		distance.put("Barcelona", "Berlin", 1497.61);
 		distance.put("Barcelona", "Warsaw", 1862.33);
 		distance.put("Barcelona", "Madrid", 504.64);
-		
+
 		Map<String, Double> barcelonaRow = distance.row("Barcelona");
 
-		//then
+		// then
 		assertThat(barcelonaRow).hasSize(3);
 		assertThat(distance.get("Barcelona", "Berlin")).isEqualTo(1497.61);
 	}
-	
+
 	@Test
 	public void testTableNonNullViews() {
-		//given
+		// given
 		Table<String, String, Double> distance = TreeBasedTable.create();
-		//when
-		
-		//then
+		// when
+
+		// then
 		assertThat(distance.row("Warsaw")).isNotNull();
 		assertThat(distance.column("Barcelona")).isNotNull();
 	}
-	
-	
+
 	@Test
 	public void testTableManipulatingOnViews() {
-		//given
+		// given
 		Table<String, String, Double> distance = TreeBasedTable.create();
 
-		//when
+		// when
 		distance.put("Barcelona", "Berlin", 1497.61);
 		distance.put("Barcelona", "Warsaw", 1862.33);
 		distance.put("Barcelona", "Madrid", 504.64);
@@ -59,11 +58,11 @@ public class TableTest {
 		Map<String, Double> madridColumn = distance.column("Madrid");
 
 		barcelonaRow.clear();
-		
+
 		warsawColumn.put("Paris", 1365.91);
 		madridColumn.put("Paris", 1053.40);
-		
-		//then
+
+		// then
 		assertThat(barcelonaRow).isEmpty();
 		assertThat(warsawColumn).hasSize(2);
 		assertThat(londonRow).hasSize(2);
