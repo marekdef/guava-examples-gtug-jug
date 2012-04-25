@@ -1,0 +1,76 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"
+    "http://www.w3.org/TR/REC-html40/strict.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="GENERATOR" content="GNU source-highlight 3.1.4
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite">
+<title>/home/marekdef/projects/guava-examples-gtug-jug/src/main/java/org/gtug/lodz/guava/strings/JoinerTest.java</title>
+<link rel="stylesheet" href="source-highlight/sh_darkness.css" type="text/css">
+</head>
+<body>
+<pre><tt><span class="preproc">package</span><span class="normal"> org</span><span class="symbol">.</span><span class="normal">gtug</span><span class="symbol">.</span><span class="normal">lodz</span><span class="symbol">.</span><span class="normal">guava</span><span class="symbol">.</span><span class="normal">strings</span><span class="symbol">;</span>
+
+<span class="preproc">import</span><span class="normal"> </span><span class="keyword">static</span><span class="normal"> org</span><span class="symbol">.</span><span class="normal">fest</span><span class="symbol">.</span><span class="normal">assertions</span><span class="symbol">.</span><span class="normal">Assertions</span><span class="symbol">.</span><span class="normal">assertThat</span><span class="symbol">;</span>
+
+<span class="preproc">import</span><span class="normal"> org</span><span class="symbol">.</span><span class="normal">junit</span><span class="symbol">.</span><span class="normal">Test</span><span class="symbol">;</span>
+
+<span class="preproc">import</span><span class="normal"> com</span><span class="symbol">.</span><span class="normal">google</span><span class="symbol">.</span><span class="normal">common</span><span class="symbol">.</span><span class="normal">base</span><span class="symbol">.</span><span class="normal">Joiner</span><span class="symbol">;</span>
+<span class="preproc">import</span><span class="normal"> com</span><span class="symbol">.</span><span class="normal">google</span><span class="symbol">.</span><span class="normal">common</span><span class="symbol">.</span><span class="normal">base</span><span class="symbol">.</span><span class="normal">Objects</span><span class="symbol">;</span>
+
+<span class="keyword">public</span><span class="normal"> </span><span class="keyword">class</span><span class="normal"> </span><span class="classname">JoinerTest</span><span class="normal"> </span><span class="cbracket">{</span>
+<span class="normal">	@Test</span>
+<span class="normal">	</span><span class="keyword">public</span><span class="normal"> </span><span class="type">void</span><span class="normal"> </span><span class="function">testJoinerWithNull</span><span class="symbol">()</span><span class="normal"> </span><span class="cbracket">{</span>
+<span class="normal">		</span><span class="comment">// given creating joiner with spaces</span>
+<span class="normal">		</span><span class="usertype">Joiner</span><span class="normal"> joiner </span><span class="symbol">=</span><span class="normal"> Joiner</span><span class="symbol">.</span><span class="function">on</span><span class="symbol">(</span><span class="string">" "</span><span class="symbol">).</span><span class="function">skipNulls</span><span class="symbol">();</span>
+
+<span class="normal">		</span><span class="comment">// when we join six word including null</span>
+<span class="normal">		</span><span class="usertype">String</span><span class="normal"> joint </span><span class="symbol">=</span><span class="normal"> joiner</span>
+<span class="normal">				</span><span class="symbol">.</span><span class="function">join</span><span class="symbol">(</span><span class="string">"GTUG"</span><span class="symbol">,</span><span class="normal"> </span><span class="string">"Łódź"</span><span class="symbol">,</span><span class="normal"> </span><span class="string">"meets"</span><span class="symbol">,</span><span class="normal"> </span><span class="string">"JUG"</span><span class="symbol">,</span><span class="normal"> </span><span class="keyword">null</span><span class="symbol">,</span><span class="normal"> </span><span class="string">"Łódź"</span><span class="symbol">);</span>
+
+<span class="normal">		</span><span class="comment">// then we get spaces and don't get null</span>
+<span class="normal">		</span><span class="function">assertThat</span><span class="symbol">(</span><span class="normal">joint</span><span class="symbol">).</span><span class="function">isEqualTo</span><span class="symbol">(</span><span class="string">"GTUG Łódź meets JUG Łódź"</span><span class="symbol">);</span>
+<span class="normal">	</span><span class="cbracket">}</span>
+
+<span class="normal">	@Test</span>
+<span class="normal">	</span><span class="keyword">public</span><span class="normal"> </span><span class="type">void</span><span class="normal"> </span><span class="function">testJoinerOnObject</span><span class="symbol">()</span><span class="normal"> </span><span class="cbracket">{</span>
+<span class="normal">		</span><span class="comment">// given created joiner with new lines and null! instead of null</span>
+<span class="normal">		</span><span class="usertype">Joiner</span><span class="normal"> joiner </span><span class="symbol">=</span><span class="normal"> Joiner</span><span class="symbol">.</span><span class="function">on</span><span class="symbol">(</span><span class="string">"</span><span class="specialchar">\n</span><span class="string">"</span><span class="symbol">).</span><span class="function">useForNull</span><span class="symbol">(</span><span class="string">"NULL!"</span><span class="symbol">);</span>
+
+<span class="normal">		</span><span class="comment">// when we join some</span>
+<span class="normal">		</span><span class="usertype">String</span><span class="normal"> joint </span><span class="symbol">=</span><span class="normal"> joiner</span><span class="symbol">.</span><span class="function">join</span><span class="symbol">(</span><span class="keyword">new</span><span class="normal"> </span><span class="function">Person</span><span class="symbol">(</span><span class="string">"Marek"</span><span class="symbol">,</span><span class="normal"> </span><span class="string">"Defeciński"</span><span class="symbol">,</span><span class="normal"> </span><span class="number">32</span><span class="symbol">),</span><span class="normal"> </span><span class="keyword">null</span><span class="symbol">);</span>
+
+<span class="normal">		</span><span class="comment">// then null is substituted</span>
+<span class="normal">		</span><span class="function">assertThat</span><span class="symbol">(</span><span class="normal">joint</span><span class="symbol">).</span><span class="function">contains</span><span class="symbol">(</span><span class="string">"NULL!"</span><span class="symbol">);</span>
+<span class="normal">		</span><span class="comment">// and object is formatted</span>
+<span class="normal">		</span><span class="function">assertThat</span><span class="symbol">(</span><span class="normal">joint</span><span class="symbol">).</span><span class="function">contains</span><span class="symbol">(</span><span class="string">"Marek Defeciński 32"</span><span class="symbol">);</span>
+<span class="normal">	</span><span class="cbracket">}</span>
+
+<span class="normal">	</span><span class="keyword">private</span><span class="normal"> </span><span class="keyword">static</span><span class="normal"> </span><span class="keyword">class</span><span class="normal"> </span><span class="classname">Person</span><span class="normal"> </span><span class="cbracket">{</span>
+<span class="normal">		</span><span class="keyword">private</span><span class="normal"> </span><span class="usertype">String</span><span class="normal"> first</span><span class="symbol">;</span>
+<span class="normal">		</span><span class="keyword">private</span><span class="normal"> </span><span class="usertype">String</span><span class="normal"> last</span><span class="symbol">;</span>
+<span class="normal">		</span><span class="keyword">private</span><span class="normal"> </span><span class="type">int</span><span class="normal"> age</span><span class="symbol">;</span>
+
+<span class="normal">		</span><span class="keyword">public</span><span class="normal"> </span><span class="function">Person</span><span class="symbol">(</span><span class="usertype">String</span><span class="normal"> first</span><span class="symbol">,</span><span class="normal"> </span><span class="usertype">String</span><span class="normal"> last</span><span class="symbol">,</span><span class="normal"> </span><span class="type">int</span><span class="normal"> age</span><span class="symbol">)</span><span class="normal"> </span><span class="cbracket">{</span>
+<span class="normal">			</span><span class="keyword">this</span><span class="symbol">.</span><span class="normal">first </span><span class="symbol">=</span><span class="normal"> first</span><span class="symbol">;</span>
+<span class="normal">			</span><span class="keyword">this</span><span class="symbol">.</span><span class="normal">last </span><span class="symbol">=</span><span class="normal"> last</span><span class="symbol">;</span>
+<span class="normal">			</span><span class="keyword">this</span><span class="symbol">.</span><span class="normal">age </span><span class="symbol">=</span><span class="normal"> age</span><span class="symbol">;</span>
+<span class="normal">		</span><span class="cbracket">}</span>
+
+<span class="normal">		@Override</span>
+<span class="normal">		</span><span class="keyword">public</span><span class="normal"> </span><span class="usertype">String</span><span class="normal"> </span><span class="function">toString</span><span class="symbol">()</span><span class="normal"> </span><span class="cbracket">{</span>
+<span class="normal">			</span><span class="keyword">return</span><span class="normal"> String</span><span class="symbol">.</span><span class="function">format</span><span class="symbol">(</span><span class="string">"%s %s %d"</span><span class="symbol">,</span><span class="normal"> first</span><span class="symbol">,</span><span class="normal"> last</span><span class="symbol">,</span><span class="normal"> age</span><span class="symbol">);</span>
+<span class="normal">		</span><span class="cbracket">}</span>
+
+<span class="normal">		@Override</span>
+<span class="normal">		</span><span class="keyword">public</span><span class="normal"> </span><span class="type">int</span><span class="normal"> </span><span class="function">hashCode</span><span class="symbol">()</span><span class="normal"> </span><span class="cbracket">{</span>
+<span class="normal">			</span><span class="keyword">return</span><span class="normal"> Objects</span><span class="symbol">.</span><span class="function">hashCode</span><span class="symbol">(</span><span class="normal">first</span><span class="symbol">,</span><span class="normal"> last</span><span class="symbol">,</span><span class="normal"> age</span><span class="symbol">);</span>
+<span class="normal">		</span><span class="cbracket">}</span>
+
+<span class="normal">	</span><span class="cbracket">}</span>
+<span class="cbracket">}</span>
+</tt></pre>
+</body>
+</html>

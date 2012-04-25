@@ -1,0 +1,76 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"
+    "http://www.w3.org/TR/REC-html40/strict.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="GENERATOR" content="GNU source-highlight 3.1.4
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite">
+<title>/home/marekdef/projects/guava-examples-gtug-jug/src/main/java/org/gtug/lodz/guava/strings/CharMatcherTest.java</title>
+<link rel="stylesheet" href="source-highlight/sh_darkness.css" type="text/css">
+</head>
+<body>
+<pre><tt><span class="preproc">package</span><span class="normal"> org</span><span class="symbol">.</span><span class="normal">gtug</span><span class="symbol">.</span><span class="normal">lodz</span><span class="symbol">.</span><span class="normal">guava</span><span class="symbol">.</span><span class="normal">strings</span><span class="symbol">;</span>
+
+<span class="preproc">import</span><span class="normal"> </span><span class="keyword">static</span><span class="normal"> org</span><span class="symbol">.</span><span class="normal">fest</span><span class="symbol">.</span><span class="normal">assertions</span><span class="symbol">.</span><span class="normal">Assertions</span><span class="symbol">.</span><span class="normal">assertThat</span><span class="symbol">;</span>
+
+<span class="preproc">import</span><span class="normal"> org</span><span class="symbol">.</span><span class="normal">junit</span><span class="symbol">.</span><span class="normal">Test</span><span class="symbol">;</span>
+
+<span class="preproc">import</span><span class="normal"> com</span><span class="symbol">.</span><span class="normal">google</span><span class="symbol">.</span><span class="normal">common</span><span class="symbol">.</span><span class="normal">base</span><span class="symbol">.</span><span class="normal">CharMatcher</span><span class="symbol">;</span>
+
+<span class="keyword">public</span><span class="normal"> </span><span class="keyword">class</span><span class="normal"> </span><span class="classname">CharMatcherTest</span><span class="normal"> </span><span class="cbracket">{</span>
+<span class="normal">	@Test</span>
+<span class="normal">	</span><span class="keyword">public</span><span class="normal"> </span><span class="type">void</span><span class="normal"> </span><span class="function">testRetain</span><span class="symbol">()</span><span class="normal"> </span><span class="cbracket">{</span>
+<span class="normal">		</span><span class="comment">// given</span>
+<span class="normal">		</span><span class="usertype">String</span><span class="normal"> phone </span><span class="symbol">=</span><span class="normal"> </span><span class="string">"517-725-068"</span><span class="symbol">;</span>
+<span class="normal">		</span><span class="comment">// when</span>
+<span class="normal">		phone </span><span class="symbol">=</span><span class="normal"> CharMatcher</span><span class="symbol">.</span><span class="normal">DIGIT</span><span class="symbol">.</span><span class="function">retainFrom</span><span class="symbol">(</span><span class="normal">phone</span><span class="symbol">);</span>
+<span class="normal">		</span><span class="comment">// then</span>
+<span class="normal">		</span><span class="function">assertThat</span><span class="symbol">(</span><span class="normal">phone</span><span class="symbol">).</span><span class="function">isEqualTo</span><span class="symbol">(</span><span class="string">"517725068"</span><span class="symbol">);</span>
+<span class="normal">	</span><span class="cbracket">}</span>
+
+<span class="normal">	@Test</span>
+<span class="normal">	</span><span class="keyword">public</span><span class="normal"> </span><span class="type">void</span><span class="normal"> </span><span class="function">testOrRemove</span><span class="symbol">()</span><span class="normal"> </span><span class="cbracket">{</span>
+<span class="normal">		</span><span class="comment">// given</span>
+<span class="normal">		</span><span class="usertype">String</span><span class="normal"> label </span><span class="symbol">=</span><span class="normal"> </span><span class="string">"Marek Defeciński 32"</span><span class="symbol">;</span>
+<span class="normal">		</span><span class="comment">// when</span>
+<span class="normal">		label </span><span class="symbol">=</span><span class="normal"> CharMatcher</span><span class="symbol">.</span><span class="normal">DIGIT</span><span class="symbol">.</span><span class="function">or</span><span class="symbol">(</span><span class="normal">CharMatcher</span><span class="symbol">.</span><span class="normal">WHITESPACE</span><span class="symbol">).</span><span class="function">removeFrom</span><span class="symbol">(</span><span class="normal">label</span><span class="symbol">);</span>
+<span class="normal">		</span><span class="comment">// then</span>
+<span class="normal">		</span><span class="function">assertThat</span><span class="symbol">(</span><span class="normal">label</span><span class="symbol">).</span><span class="function">isEqualTo</span><span class="symbol">(</span><span class="string">"MarekDefeciński"</span><span class="symbol">);</span>
+<span class="normal">	</span><span class="cbracket">}</span>
+
+<span class="normal">	@Test</span>
+<span class="normal">	</span><span class="keyword">public</span><span class="normal"> </span><span class="type">void</span><span class="normal"> </span><span class="function">testRangeNegatedMatcher</span><span class="symbol">()</span><span class="normal"> </span><span class="cbracket">{</span>
+<span class="normal">		</span><span class="comment">// given</span>
+<span class="normal">		</span><span class="usertype">String</span><span class="normal"> label </span><span class="symbol">=</span><span class="normal"> </span><span class="string">"Marek Defeciński 32"</span><span class="symbol">;</span>
+<span class="normal">		</span><span class="comment">// when</span>
+<span class="normal">		label </span><span class="symbol">=</span><span class="normal"> CharMatcher</span><span class="symbol">.</span><span class="function">inRange</span><span class="symbol">(</span><span class="string">'A'</span><span class="symbol">,</span><span class="normal"> </span><span class="string">'Z'</span><span class="symbol">).</span><span class="function">negate</span><span class="symbol">().</span><span class="function">removeFrom</span><span class="symbol">(</span><span class="normal">label</span><span class="symbol">);</span>
+<span class="normal">		</span><span class="comment">// then</span>
+<span class="normal">		</span><span class="function">assertThat</span><span class="symbol">(</span><span class="normal">label</span><span class="symbol">).</span><span class="function">isEqualTo</span><span class="symbol">(</span><span class="string">"MD"</span><span class="symbol">);</span>
+<span class="normal">	</span><span class="cbracket">}</span>
+
+<span class="normal">	@Test</span>
+<span class="normal">	</span><span class="keyword">public</span><span class="normal"> </span><span class="type">void</span><span class="normal"> </span><span class="function">testAnyOfMatcher</span><span class="symbol">()</span><span class="normal"> </span><span class="cbracket">{</span>
+<span class="normal">		</span><span class="comment">// given</span>
+<span class="normal">		</span><span class="usertype">String</span><span class="normal"> phone </span><span class="symbol">=</span><span class="normal"> </span><span class="string">"+48 517 725-068"</span><span class="symbol">;</span>
+<span class="normal">		</span><span class="comment">// when</span>
+<span class="normal">		phone </span><span class="symbol">=</span><span class="normal"> CharMatcher</span><span class="symbol">.</span><span class="function">anyOf</span><span class="symbol">(</span><span class="string">"-+"</span><span class="symbol">).</span><span class="function">removeFrom</span><span class="symbol">(</span><span class="normal">phone</span><span class="symbol">);</span>
+<span class="normal">		</span><span class="comment">// then</span>
+<span class="normal">		</span><span class="function">assertThat</span><span class="symbol">(</span><span class="normal">phone</span><span class="symbol">).</span><span class="function">isEqualTo</span><span class="symbol">(</span><span class="string">"48 517 725 068"</span><span class="symbol">);</span>
+<span class="normal">	</span><span class="cbracket">}</span>
+
+<span class="normal">	@Test</span>
+<span class="normal">	</span><span class="keyword">public</span><span class="normal"> </span><span class="type">void</span><span class="normal"> </span><span class="function">testTrim</span><span class="symbol">()</span><span class="normal"> </span><span class="cbracket">{</span>
+<span class="normal">		</span><span class="comment">// given</span>
+<span class="normal">		</span><span class="usertype">String</span><span class="normal"> phone </span><span class="symbol">=</span><span class="normal"> </span><span class="string">"    +48 517 725 068 "</span><span class="symbol">;</span>
+<span class="normal">		</span><span class="comment">// when</span>
+<span class="normal">		phone </span><span class="symbol">=</span><span class="normal"> CharMatcher</span><span class="symbol">.</span><span class="normal">WHITESPACE</span><span class="symbol">.</span><span class="function">trimFrom</span><span class="symbol">(</span><span class="normal">phone</span><span class="symbol">);</span>
+<span class="normal">		</span><span class="comment">// then</span>
+<span class="normal">		</span><span class="function">assertThat</span><span class="symbol">(</span><span class="normal">phone</span><span class="symbol">).</span><span class="function">isEqualTo</span><span class="symbol">(</span><span class="string">"+48 517 725 068"</span><span class="symbol">);</span>
+<span class="normal">	</span><span class="cbracket">}</span>
+
+<span class="cbracket">}</span>
+</tt></pre>
+</body>
+</html>

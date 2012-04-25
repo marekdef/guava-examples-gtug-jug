@@ -1,0 +1,107 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"
+    "http://www.w3.org/TR/REC-html40/strict.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="GENERATOR" content="GNU source-highlight 3.1.4
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite">
+<title>/home/marekdef/projects/guava-examples-gtug-jug/src/main/java/org/gtug/lodz/guava/strings/SplitterTest.java</title>
+<link rel="stylesheet" href="source-highlight/sh_darkness.css" type="text/css">
+</head>
+<body>
+<pre><tt><span class="preproc">package</span><span class="normal"> org</span><span class="symbol">.</span><span class="normal">gtug</span><span class="symbol">.</span><span class="normal">lodz</span><span class="symbol">.</span><span class="normal">guava</span><span class="symbol">.</span><span class="normal">strings</span><span class="symbol">;</span>
+
+<span class="preproc">import</span><span class="normal"> </span><span class="keyword">static</span><span class="normal"> org</span><span class="symbol">.</span><span class="normal">fest</span><span class="symbol">.</span><span class="normal">assertions</span><span class="symbol">.</span><span class="normal">Assertions</span><span class="symbol">.</span><span class="normal">assertThat</span><span class="symbol">;</span>
+
+<span class="preproc">import</span><span class="normal"> java</span><span class="symbol">.</span><span class="normal">util</span><span class="symbol">.</span><span class="normal">Map</span><span class="symbol">;</span>
+
+<span class="preproc">import</span><span class="normal"> org</span><span class="symbol">.</span><span class="normal">junit</span><span class="symbol">.</span><span class="normal">Test</span><span class="symbol">;</span>
+
+<span class="preproc">import</span><span class="normal"> com</span><span class="symbol">.</span><span class="normal">google</span><span class="symbol">.</span><span class="normal">common</span><span class="symbol">.</span><span class="normal">base</span><span class="symbol">.</span><span class="normal">CharMatcher</span><span class="symbol">;</span>
+<span class="preproc">import</span><span class="normal"> com</span><span class="symbol">.</span><span class="normal">google</span><span class="symbol">.</span><span class="normal">common</span><span class="symbol">.</span><span class="normal">base</span><span class="symbol">.</span><span class="normal">Splitter</span><span class="symbol">;</span>
+<span class="preproc">import</span><span class="normal"> com</span><span class="symbol">.</span><span class="normal">google</span><span class="symbol">.</span><span class="normal">common</span><span class="symbol">.</span><span class="normal">collect</span><span class="symbol">.</span><span class="normal">Iterables</span><span class="symbol">;</span>
+
+<span class="keyword">public</span><span class="normal"> </span><span class="keyword">class</span><span class="normal"> </span><span class="classname">SplitterTest</span><span class="normal"> </span><span class="cbracket">{</span>
+<span class="normal">	@Test</span>
+<span class="normal">	</span><span class="keyword">public</span><span class="normal"> </span><span class="type">void</span><span class="normal"> </span><span class="function">testSplitWithTrim</span><span class="symbol">()</span><span class="normal"> </span><span class="cbracket">{</span>
+<span class="normal">		</span><span class="comment">// given</span>
+<span class="normal">		</span><span class="comment">// when using spliter on ; that trims result</span>
+<span class="normal">		</span><span class="usertype">Iterable&lt;String&gt;</span><span class="normal"> split </span><span class="symbol">=</span><span class="normal"> Splitter</span><span class="symbol">.</span><span class="function">on</span><span class="symbol">(</span><span class="string">";"</span><span class="symbol">).</span><span class="function">trimResults</span><span class="symbol">()</span>
+<span class="normal">				</span><span class="symbol">.</span><span class="function">split</span><span class="symbol">(</span><span class="string">"JUG; GTUG; Łódź;; Guava"</span><span class="symbol">);</span>
+<span class="normal">		</span><span class="comment">// then it has correct size</span>
+<span class="normal">		</span><span class="function">assertThat</span><span class="symbol">(</span><span class="normal">split</span><span class="symbol">).</span><span class="function">hasSize</span><span class="symbol">(</span><span class="number">5</span><span class="symbol">);</span>
+<span class="normal">		</span><span class="comment">// first eleemnt is JUG</span>
+<span class="normal">		</span><span class="function">assertThat</span><span class="symbol">(</span><span class="normal">Iterables</span><span class="symbol">.</span><span class="function">getFirst</span><span class="symbol">(</span><span class="normal">split</span><span class="symbol">,</span><span class="normal"> </span><span class="keyword">null</span><span class="symbol">)).</span><span class="function">isEqualTo</span><span class="symbol">(</span><span class="string">"JUG"</span><span class="symbol">);</span>
+
+<span class="normal">		</span><span class="comment">// last element is Guava without leading space</span>
+<span class="normal">		</span><span class="function">assertThat</span><span class="symbol">(</span><span class="normal">Iterables</span><span class="symbol">.</span><span class="function">getLast</span><span class="symbol">(</span><span class="normal">split</span><span class="symbol">)).</span><span class="function">isEqualTo</span><span class="symbol">(</span><span class="string">"Guava"</span><span class="symbol">);</span>
+
+<span class="normal">		</span><span class="function">assertThat</span><span class="symbol">(</span><span class="normal">split</span><span class="symbol">).</span><span class="function">contains</span><span class="symbol">(</span><span class="string">""</span><span class="symbol">);</span>
+<span class="normal">	</span><span class="cbracket">}</span>
+
+<span class="normal">	@Test</span>
+<span class="normal">	</span><span class="keyword">public</span><span class="normal"> </span><span class="type">void</span><span class="normal"> </span><span class="function">testSplitWithNoEmptyStrings</span><span class="symbol">()</span><span class="normal"> </span><span class="cbracket">{</span>
+<span class="normal">		</span><span class="comment">// given</span>
+<span class="normal">		</span><span class="comment">// when using spliter on ; that trims result</span>
+<span class="normal">		</span><span class="usertype">Iterable&lt;String&gt;</span><span class="normal"> split </span><span class="symbol">=</span><span class="normal"> Splitter</span><span class="symbol">.</span><span class="function">on</span><span class="symbol">(</span><span class="string">";"</span><span class="symbol">).</span><span class="function">trimResults</span><span class="symbol">()</span>
+<span class="normal">				</span><span class="symbol">.</span><span class="function">omitEmptyStrings</span><span class="symbol">().</span><span class="function">split</span><span class="symbol">(</span><span class="string">"JUG; GTUG; Łódź;; Guava"</span><span class="symbol">);</span>
+<span class="normal">		</span><span class="comment">// then it has correct size</span>
+<span class="normal">		</span><span class="function">assertThat</span><span class="symbol">(</span><span class="normal">split</span><span class="symbol">).</span><span class="function">hasSize</span><span class="symbol">(</span><span class="number">4</span><span class="symbol">);</span>
+
+<span class="normal">		</span><span class="function">assertThat</span><span class="symbol">(</span><span class="normal">Iterables</span><span class="symbol">.</span><span class="function">contains</span><span class="symbol">(</span><span class="normal">split</span><span class="symbol">,</span><span class="normal"> </span><span class="string">""</span><span class="symbol">)).</span><span class="function">isFalse</span><span class="symbol">();</span>
+
+<span class="normal">		</span><span class="function">assertThat</span><span class="symbol">(</span><span class="normal">split</span><span class="symbol">).</span><span class="function">contains</span><span class="symbol">(</span><span class="string">"Guava"</span><span class="symbol">);</span>
+<span class="normal">	</span><span class="cbracket">}</span>
+
+<span class="normal">	@Test</span>
+<span class="normal">	</span><span class="keyword">public</span><span class="normal"> </span><span class="type">void</span><span class="normal"> </span><span class="function">testSplitWithMatcher</span><span class="symbol">()</span><span class="normal"> </span><span class="cbracket">{</span>
+<span class="normal">		</span><span class="comment">// given</span>
+<span class="normal">		</span><span class="comment">// when using spliter on ; and , that trims result</span>
+<span class="normal">		</span><span class="usertype">Iterable&lt;String&gt;</span><span class="normal"> split </span><span class="symbol">=</span><span class="normal"> Splitter</span><span class="symbol">.</span><span class="function">on</span><span class="symbol">(</span><span class="normal">CharMatcher</span><span class="symbol">.</span><span class="function">anyOf</span><span class="symbol">(</span><span class="string">";,"</span><span class="symbol">))</span>
+<span class="normal">				</span><span class="symbol">.</span><span class="function">trimResults</span><span class="symbol">().</span><span class="function">omitEmptyStrings</span><span class="symbol">()</span>
+<span class="normal">				</span><span class="symbol">.</span><span class="function">split</span><span class="symbol">(</span><span class="string">"JUG; GTUG, Łódź;; Guava"</span><span class="symbol">);</span>
+<span class="normal">		</span><span class="comment">// then it has correct size</span>
+<span class="normal">		</span><span class="function">assertThat</span><span class="symbol">(</span><span class="normal">split</span><span class="symbol">).</span><span class="function">hasSize</span><span class="symbol">(</span><span class="number">4</span><span class="symbol">);</span>
+
+<span class="normal">		</span><span class="function">assertThat</span><span class="symbol">(</span><span class="normal">Iterables</span><span class="symbol">.</span><span class="function">contains</span><span class="symbol">(</span><span class="normal">split</span><span class="symbol">,</span><span class="normal"> </span><span class="string">""</span><span class="symbol">)).</span><span class="function">isFalse</span><span class="symbol">();</span>
+
+<span class="normal">		</span><span class="function">assertThat</span><span class="symbol">(</span><span class="normal">split</span><span class="symbol">).</span><span class="function">containsOnly</span><span class="symbol">(</span><span class="string">"JUG"</span><span class="symbol">,</span><span class="normal"> </span><span class="string">"GTUG"</span><span class="symbol">,</span><span class="normal"> </span><span class="string">"Łódź"</span><span class="symbol">,</span><span class="normal"> </span><span class="string">"Guava"</span><span class="symbol">);</span>
+<span class="normal">	</span><span class="cbracket">}</span>
+
+<span class="normal">	@Test</span>
+<span class="normal">	</span><span class="keyword">public</span><span class="normal"> </span><span class="type">void</span><span class="normal"> </span><span class="function">testSplitWithKeyValue</span><span class="symbol">()</span><span class="normal"> </span><span class="cbracket">{</span>
+<span class="normal">		</span><span class="comment">// given like map</span>
+<span class="normal">		</span><span class="usertype">String</span><span class="normal"> python </span><span class="symbol">=</span><span class="normal"> </span><span class="string">"{'jack': 4098, 'sape': 4139}"</span><span class="symbol">.</span><span class="function">replace</span><span class="symbol">(</span><span class="string">"{"</span><span class="symbol">,</span><span class="normal"> </span><span class="string">""</span><span class="symbol">)</span>
+<span class="normal">				</span><span class="symbol">.</span><span class="function">replace</span><span class="symbol">(</span><span class="string">"}"</span><span class="symbol">,</span><span class="normal"> </span><span class="string">""</span><span class="symbol">).</span><span class="function">replace</span><span class="symbol">(</span><span class="string">"'"</span><span class="symbol">,</span><span class="normal"> </span><span class="string">""</span><span class="symbol">);</span>
+<span class="normal">		</span><span class="comment">// when we use map splitter</span>
+<span class="normal">		</span><span class="usertype">Map&lt;String, String&gt;</span><span class="normal"> split </span><span class="symbol">=</span><span class="normal"> Splitter</span><span class="symbol">.</span><span class="function">on</span><span class="symbol">(</span><span class="string">","</span><span class="symbol">)</span>
+<span class="normal">				</span><span class="symbol">.</span><span class="function">trimResults</span><span class="symbol">(</span><span class="normal">CharMatcher</span><span class="symbol">.</span><span class="function">anyOf</span><span class="symbol">(</span><span class="string">"' {}"</span><span class="symbol">))</span>
+<span class="normal">				</span><span class="symbol">.</span><span class="function">withKeyValueSeparator</span><span class="symbol">(</span><span class="string">":"</span><span class="symbol">).</span><span class="function">split</span><span class="symbol">(</span><span class="normal">python</span><span class="symbol">);</span>
+<span class="normal">		</span><span class="comment">// then we get a correct size of map</span>
+<span class="normal">		</span><span class="function">assertThat</span><span class="symbol">(</span><span class="normal">split</span><span class="symbol">).</span><span class="function">hasSize</span><span class="symbol">(</span><span class="number">2</span><span class="symbol">);</span>
+<span class="normal">		</span><span class="comment">// with good keys</span>
+<span class="normal">		</span><span class="function">assertThat</span><span class="symbol">(</span><span class="normal">split</span><span class="symbol">.</span><span class="function">keySet</span><span class="symbol">()).</span><span class="function">contains</span><span class="symbol">(</span><span class="string">"sape"</span><span class="symbol">,</span><span class="normal"> </span><span class="string">"jack"</span><span class="symbol">);</span>
+<span class="normal">	</span><span class="cbracket">}</span>
+
+<span class="normal">	@Test</span>
+<span class="normal">	</span><span class="keyword">public</span><span class="normal"> </span><span class="type">void</span><span class="normal"> </span><span class="function">testSplitWithLimit</span><span class="symbol">()</span><span class="normal"> </span><span class="cbracket">{</span>
+<span class="normal">		</span><span class="comment">// given</span>
+<span class="normal">		</span><span class="comment">// when using spliter on ; that trims result and stops on 3rd split</span>
+<span class="normal">		</span><span class="usertype">Iterable&lt;String&gt;</span><span class="normal"> split </span><span class="symbol">=</span><span class="normal"> Splitter</span><span class="symbol">.</span><span class="function">on</span><span class="symbol">(</span><span class="normal">CharMatcher</span><span class="symbol">.</span><span class="function">anyOf</span><span class="symbol">(</span><span class="string">";,"</span><span class="symbol">)).</span><span class="function">limit</span><span class="symbol">(</span><span class="number">3</span><span class="symbol">)</span>
+<span class="normal">				</span><span class="symbol">.</span><span class="function">trimResults</span><span class="symbol">().</span><span class="function">omitEmptyStrings</span><span class="symbol">()</span>
+<span class="normal">				</span><span class="symbol">.</span><span class="function">split</span><span class="symbol">(</span><span class="string">"JUG; GTUG, Łódź;; Guava"</span><span class="symbol">);</span>
+<span class="normal">		</span><span class="comment">// then it has correct size</span>
+<span class="normal">		</span><span class="function">assertThat</span><span class="symbol">(</span><span class="normal">split</span><span class="symbol">).</span><span class="function">hasSize</span><span class="symbol">(</span><span class="number">3</span><span class="symbol">);</span>
+
+<span class="normal">		</span><span class="comment">// has fist 2 elements splitted</span>
+<span class="normal">		</span><span class="function">assertThat</span><span class="symbol">(</span><span class="normal">split</span><span class="symbol">).</span><span class="function">contains</span><span class="symbol">(</span><span class="string">"JUG"</span><span class="symbol">,</span><span class="normal"> </span><span class="string">"GTUG"</span><span class="symbol">);</span>
+
+<span class="normal">		</span><span class="comment">// the last is not splites</span>
+<span class="normal">		</span><span class="function">assertThat</span><span class="symbol">(</span><span class="normal">Iterables</span><span class="symbol">.</span><span class="function">getLast</span><span class="symbol">(</span><span class="normal">split</span><span class="symbol">)).</span><span class="function">isEqualTo</span><span class="symbol">(</span><span class="string">"Łódź;; Guava"</span><span class="symbol">);</span>
+<span class="normal">	</span><span class="cbracket">}</span>
+<span class="cbracket">}</span>
+</tt></pre>
+</body>
+</html>

@@ -1,0 +1,111 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"
+    "http://www.w3.org/TR/REC-html40/strict.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="GENERATOR" content="GNU source-highlight 3.1.4
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite">
+<title>/home/marekdef/projects/guava-examples-gtug-jug/src/main/java/org/gtug/lodz/collections/iterables/IterableTest.java</title>
+<link rel="stylesheet" href="source-highlight/sh_darkness.css" type="text/css">
+</head>
+<body>
+<pre><tt><span class="preproc">package</span><span class="normal"> org</span><span class="symbol">.</span><span class="normal">gtug</span><span class="symbol">.</span><span class="normal">lodz</span><span class="symbol">.</span><span class="normal">collections</span><span class="symbol">.</span><span class="normal">iterables</span><span class="symbol">;</span>
+
+<span class="preproc">import</span><span class="normal"> </span><span class="keyword">static</span><span class="normal"> org</span><span class="symbol">.</span><span class="normal">fest</span><span class="symbol">.</span><span class="normal">assertions</span><span class="symbol">.</span><span class="normal">Assertions</span><span class="symbol">.</span><span class="normal">assertThat</span><span class="symbol">;</span>
+
+<span class="preproc">import</span><span class="normal"> java</span><span class="symbol">.</span><span class="normal">util</span><span class="symbol">.</span><span class="normal">ArrayList</span><span class="symbol">;</span>
+<span class="preproc">import</span><span class="normal"> java</span><span class="symbol">.</span><span class="normal">util</span><span class="symbol">.</span><span class="normal">Arrays</span><span class="symbol">;</span>
+<span class="preproc">import</span><span class="normal"> java</span><span class="symbol">.</span><span class="normal">util</span><span class="symbol">.</span><span class="normal">List</span><span class="symbol">;</span>
+<span class="preproc">import</span><span class="normal"> java</span><span class="symbol">.</span><span class="normal">util</span><span class="symbol">.</span><span class="normal">Set</span><span class="symbol">;</span>
+<span class="preproc">import</span><span class="normal"> java</span><span class="symbol">.</span><span class="normal">util</span><span class="symbol">.</span><span class="normal">TreeSet</span><span class="symbol">;</span>
+
+<span class="preproc">import</span><span class="normal"> org</span><span class="symbol">.</span><span class="normal">junit</span><span class="symbol">.</span><span class="normal">Test</span><span class="symbol">;</span>
+
+<span class="preproc">import</span><span class="normal"> com</span><span class="symbol">.</span><span class="normal">google</span><span class="symbol">.</span><span class="normal">common</span><span class="symbol">.</span><span class="normal">base</span><span class="symbol">.</span><span class="normal">Predicate</span><span class="symbol">;</span>
+<span class="preproc">import</span><span class="normal"> com</span><span class="symbol">.</span><span class="normal">google</span><span class="symbol">.</span><span class="normal">common</span><span class="symbol">.</span><span class="normal">collect</span><span class="symbol">.</span><span class="normal">Iterables</span><span class="symbol">;</span>
+<span class="preproc">import</span><span class="normal"> com</span><span class="symbol">.</span><span class="normal">google</span><span class="symbol">.</span><span class="normal">common</span><span class="symbol">.</span><span class="normal">collect</span><span class="symbol">.</span><span class="normal">Lists</span><span class="symbol">;</span>
+
+<span class="keyword">public</span><span class="normal"> </span><span class="keyword">class</span><span class="normal"> </span><span class="classname">IterableTest</span><span class="normal"> </span><span class="cbracket">{</span>
+
+<span class="normal">	@Test</span>
+<span class="normal">	</span><span class="keyword">public</span><span class="normal"> </span><span class="type">void</span><span class="normal"> </span><span class="function">testRemoveIf</span><span class="symbol">()</span><span class="normal"> </span><span class="cbracket">{</span>
+<span class="normal">		</span><span class="comment">// given</span>
+<span class="normal">		</span><span class="usertype">List&lt;String&gt;</span><span class="normal"> languages </span><span class="symbol">=</span><span class="normal"> </span><span class="keyword">new</span><span class="normal"> ArrayList</span><span class="symbol">&lt;</span><span class="normal">String</span><span class="symbol">&gt;(</span><span class="normal">Arrays</span><span class="symbol">.</span><span class="function">asList</span><span class="symbol">(</span><span class="string">"Polish"</span><span class="symbol">,</span>
+<span class="normal">				</span><span class="string">"English"</span><span class="symbol">,</span><span class="normal"> </span><span class="string">"Spanish"</span><span class="symbol">));</span>
+
+<span class="normal">		</span><span class="usertype">ArrayList&lt;String&gt;</span><span class="normal"> programmingLangs </span><span class="symbol">=</span><span class="normal"> Lists</span><span class="symbol">.</span><span class="function">newArrayList</span><span class="symbol">(</span><span class="string">"Java"</span><span class="symbol">,</span><span class="normal"> </span><span class="string">"C++"</span><span class="symbol">,</span>
+<span class="normal">				</span><span class="string">"Python"</span><span class="symbol">,</span><span class="normal"> </span><span class="string">"PHP"</span><span class="symbol">);</span>
+
+<span class="normal">		</span><span class="usertype">Predicate&lt;? super String&gt;</span><span class="normal"> predicate </span><span class="symbol">=</span><span class="normal"> </span><span class="keyword">new</span><span class="normal"> Predicate</span><span class="symbol">&lt;</span><span class="normal">String</span><span class="symbol">&gt;()</span><span class="normal"> </span><span class="cbracket">{</span>
+<span class="normal">			</span><span class="keyword">public</span><span class="normal"> </span><span class="type">boolean</span><span class="normal"> </span><span class="function">apply</span><span class="symbol">(</span><span class="usertype">String</span><span class="normal"> input</span><span class="symbol">)</span><span class="normal"> </span><span class="cbracket">{</span>
+<span class="normal">				</span><span class="keyword">return</span><span class="normal"> </span><span class="symbol">!</span><span class="normal">input</span><span class="symbol">.</span><span class="function">startsWith</span><span class="symbol">(</span><span class="string">"P"</span><span class="symbol">);</span>
+<span class="normal">			</span><span class="cbracket">}</span>
+<span class="normal">		</span><span class="cbracket">}</span><span class="symbol">;</span>
+
+<span class="normal">		</span><span class="comment">// when we create concatenated iterable</span>
+<span class="normal">		</span><span class="usertype">Iterable&lt;String&gt;</span><span class="normal"> removeFrom </span><span class="symbol">=</span><span class="normal"> Iterables</span><span class="symbol">.</span><span class="function">concat</span><span class="symbol">(</span><span class="normal">languages</span><span class="symbol">,</span>
+<span class="normal">				programmingLangs</span><span class="symbol">);</span>
+
+<span class="normal">		</span><span class="comment">// we remove from concate using predicate (not starting with P)</span>
+<span class="normal">		Iterables</span><span class="symbol">.</span><span class="function">removeIf</span><span class="symbol">(</span><span class="normal">removeFrom</span><span class="symbol">,</span><span class="normal"> predicate</span><span class="symbol">);</span>
+
+<span class="normal">		</span><span class="comment">// we have only P remaining in _underlying_ collection</span>
+<span class="normal">		</span><span class="function">assertThat</span><span class="symbol">(</span><span class="normal">languages</span><span class="symbol">).</span><span class="function">containsOnly</span><span class="symbol">(</span><span class="string">"Polish"</span><span class="symbol">);</span>
+<span class="normal">		</span><span class="function">assertThat</span><span class="symbol">(</span><span class="normal">programmingLangs</span><span class="symbol">).</span><span class="function">containsOnly</span><span class="symbol">(</span><span class="string">"Python"</span><span class="symbol">,</span><span class="normal"> </span><span class="string">"PHP"</span><span class="symbol">);</span>
+<span class="normal">	</span><span class="cbracket">}</span>
+
+<span class="normal">	@Test</span>
+<span class="normal">	</span><span class="keyword">public</span><span class="normal"> </span><span class="type">void</span><span class="normal"> </span><span class="function">testPartitions</span><span class="symbol">()</span><span class="normal"> </span><span class="cbracket">{</span>
+<span class="normal">		</span><span class="comment">// given</span>
+<span class="normal">		</span><span class="usertype">List&lt;String&gt;</span><span class="normal"> languages </span><span class="symbol">=</span><span class="normal"> Arrays</span><span class="symbol">.</span><span class="function">asList</span><span class="symbol">(</span><span class="string">"Polish"</span><span class="symbol">,</span><span class="normal"> </span><span class="string">"English"</span><span class="symbol">,</span><span class="normal"> </span><span class="string">"Spanish"</span><span class="symbol">,</span>
+<span class="normal">				</span><span class="string">"German"</span><span class="symbol">,</span><span class="normal"> </span><span class="string">"Greek"</span><span class="symbol">,</span><span class="normal"> </span><span class="string">"Russian"</span><span class="symbol">,</span><span class="normal"> </span><span class="string">"French"</span><span class="symbol">);</span>
+
+<span class="normal">		</span><span class="comment">// when we split into partition</span>
+<span class="normal">		</span><span class="usertype">Iterable&lt;List&lt;String&gt;&gt;</span><span class="normal"> partition </span><span class="symbol">=</span><span class="normal"> Iterables</span><span class="symbol">.</span><span class="function">partition</span><span class="symbol">(</span><span class="normal">languages</span><span class="symbol">,</span><span class="normal"> </span><span class="number">2</span><span class="symbol">);</span>
+<span class="normal">		</span><span class="comment">// and get 1st element in partitions</span>
+<span class="normal">		</span><span class="usertype">List&lt;String&gt;</span><span class="normal"> first </span><span class="symbol">=</span><span class="normal"> Iterables</span><span class="symbol">.</span><span class="function">getFirst</span><span class="symbol">(</span><span class="normal">partition</span><span class="symbol">,</span><span class="normal"> </span><span class="keyword">null</span><span class="symbol">);</span>
+<span class="normal">		</span><span class="comment">// and get the last in partition</span>
+<span class="normal">		</span><span class="usertype">List&lt;String&gt;</span><span class="normal"> lastList </span><span class="symbol">=</span><span class="normal"> Iterables</span><span class="symbol">.</span><span class="function">getLast</span><span class="symbol">(</span><span class="normal">partition</span><span class="symbol">);</span>
+
+<span class="normal">		</span><span class="comment">// then we have 4 partitions (7/2+1)</span>
+<span class="normal">		</span><span class="function">assertThat</span><span class="symbol">(</span><span class="normal">partition</span><span class="symbol">).</span><span class="function">hasSize</span><span class="symbol">(</span><span class="number">4</span><span class="symbol">);</span>
+<span class="normal">		</span><span class="comment">// first partition exists</span>
+<span class="normal">		</span><span class="function">assertThat</span><span class="symbol">(</span><span class="normal">first</span><span class="symbol">).</span><span class="function">isNotNull</span><span class="symbol">();</span>
+<span class="normal">		</span><span class="comment">// and has 2 eleements</span>
+<span class="normal">		</span><span class="function">assertThat</span><span class="symbol">(</span><span class="normal">first</span><span class="symbol">).</span><span class="function">containsOnly</span><span class="symbol">(</span><span class="string">"Polish"</span><span class="symbol">,</span><span class="normal"> </span><span class="string">"English"</span><span class="symbol">);</span>
+<span class="normal">		</span><span class="comment">// last list has only one element</span>
+<span class="normal">		</span><span class="function">assertThat</span><span class="symbol">(</span><span class="normal">Iterables</span><span class="symbol">.</span><span class="function">getOnlyElement</span><span class="symbol">(</span><span class="normal">lastList</span><span class="symbol">)).</span><span class="function">isEqualTo</span><span class="symbol">(</span><span class="string">"French"</span><span class="symbol">);</span>
+<span class="normal">	</span><span class="cbracket">}</span>
+
+<span class="normal">	@Test</span>
+<span class="normal">	</span><span class="keyword">public</span><span class="normal"> </span><span class="type">void</span><span class="normal"> </span><span class="function">testGetAtPosition</span><span class="symbol">()</span><span class="normal"> </span><span class="cbracket">{</span>
+<span class="normal">		</span><span class="comment">// given</span>
+<span class="normal">		</span><span class="usertype">List&lt;String&gt;</span><span class="normal"> languages </span><span class="symbol">=</span><span class="normal"> Arrays</span><span class="symbol">.</span><span class="function">asList</span><span class="symbol">(</span><span class="string">"Polish"</span><span class="symbol">,</span><span class="normal"> </span><span class="string">"English"</span><span class="symbol">,</span><span class="normal"> </span><span class="string">"Spanish"</span><span class="symbol">,</span>
+<span class="normal">				</span><span class="string">"German"</span><span class="symbol">,</span><span class="normal"> </span><span class="string">"Greek"</span><span class="symbol">,</span><span class="normal"> </span><span class="string">"Russian"</span><span class="symbol">,</span><span class="normal"> </span><span class="string">"French"</span><span class="symbol">);</span>
+
+<span class="normal">		</span><span class="comment">// when</span>
+<span class="normal">		</span><span class="usertype">String</span><span class="normal"> stringAt3 </span><span class="symbol">=</span><span class="normal"> Iterables</span><span class="symbol">.</span><span class="function">get</span><span class="symbol">(</span><span class="normal">languages</span><span class="symbol">,</span><span class="normal"> </span><span class="number">3</span><span class="symbol">);</span>
+
+<span class="normal">		</span><span class="comment">// then we get element at 3rd position</span>
+<span class="normal">		</span><span class="function">assertThat</span><span class="symbol">(</span><span class="normal">stringAt3</span><span class="symbol">).</span><span class="function">isEqualTo</span><span class="symbol">(</span><span class="string">"German"</span><span class="symbol">);</span>
+<span class="normal">	</span><span class="cbracket">}</span>
+
+<span class="normal">	@Test</span>
+<span class="normal">	</span><span class="keyword">public</span><span class="normal"> </span><span class="type">void</span><span class="normal"> </span><span class="function">testEqual</span><span class="symbol">()</span><span class="normal"> </span><span class="cbracket">{</span>
+<span class="normal">		</span><span class="comment">// given</span>
+<span class="normal">		</span><span class="usertype">List&lt;String&gt;</span><span class="normal"> list </span><span class="symbol">=</span><span class="normal"> Arrays</span><span class="symbol">.</span><span class="function">asList</span><span class="symbol">(</span><span class="string">"English"</span><span class="symbol">,</span><span class="normal"> </span><span class="string">"Polish"</span><span class="symbol">,</span><span class="normal"> </span><span class="string">"Spanish"</span><span class="symbol">);</span>
+<span class="normal">		</span><span class="usertype">Set&lt;String&gt;</span><span class="normal"> set </span><span class="symbol">=</span><span class="normal"> </span><span class="keyword">new</span><span class="normal"> TreeSet</span><span class="symbol">&lt;</span><span class="normal">String</span><span class="symbol">&gt;(</span><span class="normal">Arrays</span><span class="symbol">.</span><span class="function">asList</span><span class="symbol">(</span><span class="string">"Polish"</span><span class="symbol">,</span>
+<span class="normal">				</span><span class="string">"English"</span><span class="symbol">,</span><span class="normal"> </span><span class="string">"Spanish"</span><span class="symbol">));</span>
+<span class="normal">		</span><span class="comment">// when</span>
+
+<span class="normal">		</span><span class="comment">// then set is not equal to list</span>
+<span class="normal">		</span><span class="function">assertThat</span><span class="symbol">(</span><span class="normal">set</span><span class="symbol">.</span><span class="function">equals</span><span class="symbol">(</span><span class="normal">list</span><span class="symbol">)).</span><span class="function">isFalse</span><span class="symbol">();</span>
+<span class="normal">		</span><span class="comment">// but is equal when iterating</span>
+<span class="normal">		</span><span class="function">assertThat</span><span class="symbol">(</span><span class="normal">Iterables</span><span class="symbol">.</span><span class="function">elementsEqual</span><span class="symbol">(</span><span class="normal">set</span><span class="symbol">,</span><span class="normal"> list</span><span class="symbol">)).</span><span class="function">isTrue</span><span class="symbol">();</span>
+<span class="normal">	</span><span class="cbracket">}</span>
+<span class="cbracket">}</span>
+</tt></pre>
+</body>
+</html>

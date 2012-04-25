@@ -1,0 +1,50 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"
+    "http://www.w3.org/TR/REC-html40/strict.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="GENERATOR" content="GNU source-highlight 3.1.4
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite">
+<title>/home/marekdef/projects/guava-examples-gtug-jug/src/main/java/org/gtug/lodz/collections/LegacyMultiMap.java</title>
+<link rel="stylesheet" href="source-highlight/sh_darkness.css" type="text/css">
+</head>
+<body>
+<pre><tt><span class="preproc">package</span><span class="normal"> org</span><span class="symbol">.</span><span class="normal">gtug</span><span class="symbol">.</span><span class="normal">lodz</span><span class="symbol">.</span><span class="normal">collections</span><span class="symbol">;</span>
+
+<span class="preproc">import</span><span class="normal"> java</span><span class="symbol">.</span><span class="normal">util</span><span class="symbol">.</span><span class="normal">HashMap</span><span class="symbol">;</span>
+<span class="preproc">import</span><span class="normal"> java</span><span class="symbol">.</span><span class="normal">util</span><span class="symbol">.</span><span class="normal">HashSet</span><span class="symbol">;</span>
+<span class="preproc">import</span><span class="normal"> java</span><span class="symbol">.</span><span class="normal">util</span><span class="symbol">.</span><span class="normal">Map</span><span class="symbol">;</span>
+<span class="preproc">import</span><span class="normal"> java</span><span class="symbol">.</span><span class="normal">util</span><span class="symbol">.</span><span class="normal">Set</span><span class="symbol">;</span>
+
+<span class="keyword">public</span><span class="normal"> </span><span class="keyword">class</span><span class="normal"> </span><span class="classname">LegacyMultiMap</span><span class="symbol">&lt;</span><span class="normal">K</span><span class="symbol">,</span><span class="normal"> V</span><span class="symbol">&gt;</span><span class="normal"> </span><span class="cbracket">{</span>
+<span class="normal">	</span><span class="keyword">private</span><span class="normal"> </span><span class="usertype">Map&lt;K, Set&lt;V&gt;&gt;</span><span class="normal"> internal </span><span class="symbol">=</span><span class="normal"> </span><span class="keyword">new</span><span class="normal"> HashMap</span><span class="symbol">&lt;</span><span class="normal">K</span><span class="symbol">,</span><span class="normal"> Set</span><span class="symbol">&lt;</span><span class="normal">V</span><span class="symbol">&gt;&gt;();</span>
+
+<span class="normal">	</span><span class="keyword">public</span><span class="normal"> </span><span class="usertype">Set&lt;V&gt;</span><span class="normal"> </span><span class="function">get</span><span class="symbol">(</span><span class="usertype">K</span><span class="normal"> key</span><span class="symbol">)</span><span class="normal"> </span><span class="cbracket">{</span>
+<span class="normal">		</span><span class="usertype">Set&lt;V&gt;</span><span class="normal"> existingValue </span><span class="symbol">=</span><span class="normal"> internal</span><span class="symbol">.</span><span class="function">get</span><span class="symbol">(</span><span class="normal">key</span><span class="symbol">);</span>
+
+<span class="normal">		</span><span class="keyword">if</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">existingValue </span><span class="symbol">!=</span><span class="normal"> </span><span class="keyword">null</span><span class="symbol">)</span>
+<span class="normal">			</span><span class="keyword">return</span><span class="normal"> existingValue</span><span class="symbol">;</span>
+
+<span class="normal">		</span><span class="usertype">Set&lt;V&gt;</span><span class="normal"> value </span><span class="symbol">=</span><span class="normal"> </span><span class="keyword">new</span><span class="normal"> HashSet</span><span class="symbol">&lt;</span><span class="normal">V</span><span class="symbol">&gt;();</span>
+<span class="normal">		internal</span><span class="symbol">.</span><span class="function">put</span><span class="symbol">(</span><span class="normal">key</span><span class="symbol">,</span><span class="normal"> value</span><span class="symbol">);</span>
+
+<span class="normal">		</span><span class="keyword">return</span><span class="normal"> value</span><span class="symbol">;</span>
+<span class="normal">	</span><span class="cbracket">}</span>
+
+<span class="normal">	</span><span class="keyword">public</span><span class="normal"> </span><span class="type">void</span><span class="normal"> </span><span class="function">put</span><span class="symbol">(</span><span class="usertype">K</span><span class="normal"> key</span><span class="symbol">,</span><span class="normal"> </span><span class="usertype">V</span><span class="normal"> value</span><span class="symbol">)</span><span class="normal"> </span><span class="cbracket">{</span>
+<span class="normal">		</span><span class="function">get</span><span class="symbol">(</span><span class="normal">key</span><span class="symbol">).</span><span class="function">add</span><span class="symbol">(</span><span class="normal">value</span><span class="symbol">);</span>
+<span class="normal">	</span><span class="cbracket">}</span>
+
+<span class="normal">	</span><span class="keyword">public</span><span class="normal"> </span><span class="type">void</span><span class="normal"> </span><span class="function">remove</span><span class="symbol">(</span><span class="usertype">K</span><span class="normal"> key</span><span class="symbol">,</span><span class="normal"> </span><span class="usertype">V</span><span class="normal"> value</span><span class="symbol">)</span><span class="normal"> </span><span class="cbracket">{</span>
+<span class="normal">		</span><span class="function">get</span><span class="symbol">(</span><span class="normal">key</span><span class="symbol">).</span><span class="function">remove</span><span class="symbol">(</span><span class="normal">value</span><span class="symbol">);</span>
+<span class="normal">	</span><span class="cbracket">}</span>
+
+<span class="normal">	</span><span class="keyword">public</span><span class="normal"> </span><span class="keyword">static</span><span class="normal"> </span><span class="symbol">&lt;</span><span class="normal">K</span><span class="symbol">,</span><span class="normal"> V</span><span class="symbol">&gt;</span><span class="normal"> </span><span class="usertype">LegacyMultiMap&lt;K, V&gt;</span><span class="normal"> </span><span class="function">create</span><span class="symbol">()</span><span class="normal"> </span><span class="cbracket">{</span>
+<span class="normal">		</span><span class="keyword">return</span><span class="normal"> </span><span class="keyword">new</span><span class="normal"> LegacyMultiMap</span><span class="symbol">&lt;</span><span class="normal">K</span><span class="symbol">,</span><span class="normal"> V</span><span class="symbol">&gt;();</span>
+<span class="normal">	</span><span class="cbracket">}</span>
+<span class="cbracket">}</span>
+</tt></pre>
+</body>
+</html>

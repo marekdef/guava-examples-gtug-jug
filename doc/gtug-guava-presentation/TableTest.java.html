@@ -1,0 +1,99 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"
+    "http://www.w3.org/TR/REC-html40/strict.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="GENERATOR" content="GNU source-highlight 3.1.4
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite">
+<title>/home/marekdef/projects/guava-examples-gtug-jug/src/main/java/org/gtug/lodz/collections/TableTest.java</title>
+<link rel="stylesheet" href="source-highlight/sh_darkness.css" type="text/css">
+</head>
+<body>
+<pre><tt><span class="preproc">package</span><span class="normal"> org</span><span class="symbol">.</span><span class="normal">gtug</span><span class="symbol">.</span><span class="normal">lodz</span><span class="symbol">.</span><span class="normal">collections</span><span class="symbol">;</span>
+
+<span class="preproc">import</span><span class="normal"> </span><span class="keyword">static</span><span class="normal"> org</span><span class="symbol">.</span><span class="normal">fest</span><span class="symbol">.</span><span class="normal">assertions</span><span class="symbol">.</span><span class="normal">Assertions</span><span class="symbol">.</span><span class="normal">assertThat</span><span class="symbol">;</span>
+
+<span class="preproc">import</span><span class="normal"> java</span><span class="symbol">.</span><span class="normal">util</span><span class="symbol">.</span><span class="normal">Map</span><span class="symbol">;</span>
+
+<span class="preproc">import</span><span class="normal"> org</span><span class="symbol">.</span><span class="normal">junit</span><span class="symbol">.</span><span class="normal">Test</span><span class="symbol">;</span>
+
+<span class="preproc">import</span><span class="normal"> com</span><span class="symbol">.</span><span class="normal">google</span><span class="symbol">.</span><span class="normal">common</span><span class="symbol">.</span><span class="normal">collect</span><span class="symbol">.</span><span class="normal">Table</span><span class="symbol">;</span>
+<span class="preproc">import</span><span class="normal"> com</span><span class="symbol">.</span><span class="normal">google</span><span class="symbol">.</span><span class="normal">common</span><span class="symbol">.</span><span class="normal">collect</span><span class="symbol">.</span><span class="normal">TreeBasedTable</span><span class="symbol">;</span>
+
+<span class="keyword">public</span><span class="normal"> </span><span class="keyword">class</span><span class="normal"> </span><span class="classname">TableTest</span><span class="normal"> </span><span class="cbracket">{</span>
+
+<span class="normal">	@Test</span>
+<span class="normal">	</span><span class="keyword">public</span><span class="normal"> </span><span class="type">void</span><span class="normal"> </span><span class="function">testTableCreation</span><span class="symbol">()</span><span class="normal"> </span><span class="cbracket">{</span>
+<span class="normal">		</span><span class="comment">// given a table</span>
+<span class="normal">		</span><span class="usertype">Table&lt;String, String, Double&gt;</span><span class="normal"> distance </span><span class="symbol">=</span><span class="normal"> TreeBasedTable</span><span class="symbol">.</span><span class="function">create</span><span class="symbol">();</span>
+
+<span class="normal">		</span><span class="comment">// when filling data</span>
+<span class="normal">		distance</span><span class="symbol">.</span><span class="function">put</span><span class="symbol">(</span><span class="string">"Barcelona"</span><span class="symbol">,</span><span class="normal"> </span><span class="string">"Berlin"</span><span class="symbol">,</span><span class="normal"> </span><span class="number">1497.61</span><span class="symbol">);</span>
+<span class="normal">		distance</span><span class="symbol">.</span><span class="function">put</span><span class="symbol">(</span><span class="string">"Barcelona"</span><span class="symbol">,</span><span class="normal"> </span><span class="string">"Warsaw"</span><span class="symbol">,</span><span class="normal"> </span><span class="number">1862.33</span><span class="symbol">);</span>
+<span class="normal">		distance</span><span class="symbol">.</span><span class="function">put</span><span class="symbol">(</span><span class="string">"Barcelona"</span><span class="symbol">,</span><span class="normal"> </span><span class="string">"Madrid"</span><span class="symbol">,</span><span class="normal"> </span><span class="number">504.64</span><span class="symbol">);</span>
+
+<span class="normal">		</span><span class="comment">// obtaining a row</span>
+<span class="normal">		</span><span class="usertype">Map&lt;String, Double&gt;</span><span class="normal"> barcelonaRow </span><span class="symbol">=</span><span class="normal"> distance</span><span class="symbol">.</span><span class="function">row</span><span class="symbol">(</span><span class="string">"Barcelona"</span><span class="symbol">);</span>
+
+<span class="normal">		</span><span class="comment">// then we can query rows</span>
+<span class="normal">		</span><span class="function">assertThat</span><span class="symbol">(</span><span class="normal">barcelonaRow</span><span class="symbol">).</span><span class="function">hasSize</span><span class="symbol">(</span><span class="number">3</span><span class="symbol">);</span>
+<span class="normal">		</span><span class="comment">// for elements</span>
+<span class="normal">		</span><span class="function">assertThat</span><span class="symbol">(</span><span class="normal">barcelonaRow</span><span class="symbol">.</span><span class="function">get</span><span class="symbol">(</span><span class="string">"Warsaw"</span><span class="symbol">)).</span><span class="function">isEqualTo</span><span class="symbol">(</span><span class="number">1862.33</span><span class="symbol">);</span>
+<span class="normal">		</span><span class="comment">// and a table directly</span>
+<span class="normal">		</span><span class="function">assertThat</span><span class="symbol">(</span><span class="normal">distance</span><span class="symbol">.</span><span class="function">get</span><span class="symbol">(</span><span class="string">"Barcelona"</span><span class="symbol">,</span><span class="normal"> </span><span class="string">"Berlin"</span><span class="symbol">)).</span><span class="function">isEqualTo</span><span class="symbol">(</span><span class="number">1497.61</span><span class="symbol">);</span>
+<span class="normal">	</span><span class="cbracket">}</span>
+
+<span class="normal">	@Test</span>
+<span class="normal">	</span><span class="keyword">public</span><span class="normal"> </span><span class="type">void</span><span class="normal"> </span><span class="function">testTableNonNullViews</span><span class="symbol">()</span><span class="normal"> </span><span class="cbracket">{</span>
+<span class="normal">		</span><span class="comment">// given</span>
+<span class="normal">		</span><span class="usertype">Table&lt;String, String, Double&gt;</span><span class="normal"> distance </span><span class="symbol">=</span><span class="normal"> TreeBasedTable</span><span class="symbol">.</span><span class="function">create</span><span class="symbol">();</span>
+<span class="normal">		</span><span class="comment">// when</span>
+
+<span class="normal">		</span><span class="comment">// then we get not null rows for not existing rows</span>
+<span class="normal">		</span><span class="function">assertThat</span><span class="symbol">(</span><span class="normal">distance</span><span class="symbol">.</span><span class="function">row</span><span class="symbol">(</span><span class="string">"Warsaw"</span><span class="symbol">)).</span><span class="function">isNotNull</span><span class="symbol">();</span>
+<span class="normal">		</span><span class="function">assertThat</span><span class="symbol">(</span><span class="normal">distance</span><span class="symbol">.</span><span class="function">column</span><span class="symbol">(</span><span class="string">"Barcelona"</span><span class="symbol">)).</span><span class="function">isNotNull</span><span class="symbol">();</span>
+<span class="normal">	</span><span class="cbracket">}</span>
+
+<span class="normal">	@Test</span>
+<span class="normal">	</span><span class="keyword">public</span><span class="normal"> </span><span class="type">void</span><span class="normal"> </span><span class="function">testTableManipulatingOnViews</span><span class="symbol">()</span><span class="normal"> </span><span class="cbracket">{</span>
+<span class="normal">		</span><span class="comment">// given</span>
+<span class="normal">		</span><span class="usertype">Table&lt;String, String, Double&gt;</span><span class="normal"> distance </span><span class="symbol">=</span><span class="normal"> TreeBasedTable</span><span class="symbol">.</span><span class="function">create</span><span class="symbol">();</span>
+
+<span class="normal">		</span><span class="comment">// when</span>
+<span class="normal">		distance</span><span class="symbol">.</span><span class="function">put</span><span class="symbol">(</span><span class="string">"Barcelona"</span><span class="symbol">,</span><span class="normal"> </span><span class="string">"Berlin"</span><span class="symbol">,</span><span class="normal"> </span><span class="number">1497.61</span><span class="symbol">);</span>
+<span class="normal">		distance</span><span class="symbol">.</span><span class="function">put</span><span class="symbol">(</span><span class="string">"Barcelona"</span><span class="symbol">,</span><span class="normal"> </span><span class="string">"Warsaw"</span><span class="symbol">,</span><span class="normal"> </span><span class="number">1862.33</span><span class="symbol">);</span>
+<span class="normal">		distance</span><span class="symbol">.</span><span class="function">put</span><span class="symbol">(</span><span class="string">"Barcelona"</span><span class="symbol">,</span><span class="normal"> </span><span class="string">"Madrid"</span><span class="symbol">,</span><span class="normal"> </span><span class="number">504.64</span><span class="symbol">);</span>
+
+<span class="normal">		</span><span class="comment">// we obtain a row (view)</span>
+<span class="normal">		</span><span class="usertype">Map&lt;String, Double&gt;</span><span class="normal"> londonRow </span><span class="symbol">=</span><span class="normal"> distance</span><span class="symbol">.</span><span class="function">row</span><span class="symbol">(</span><span class="string">"London"</span><span class="symbol">);</span>
+<span class="normal">		</span><span class="comment">// update table directly</span>
+<span class="normal">		distance</span><span class="symbol">.</span><span class="function">put</span><span class="symbol">(</span><span class="string">"London"</span><span class="symbol">,</span><span class="normal"> </span><span class="string">"Warsaw"</span><span class="symbol">,</span><span class="normal"> </span><span class="number">1445.85</span><span class="symbol">);</span>
+<span class="normal">		</span><span class="comment">// update using view</span>
+<span class="normal">		londonRow</span><span class="symbol">.</span><span class="function">put</span><span class="symbol">(</span><span class="string">"Istambul"</span><span class="symbol">,</span><span class="normal"> </span><span class="number">2496.39</span><span class="symbol">);</span>
+
+<span class="normal">		</span><span class="usertype">Map&lt;String, Double&gt;</span><span class="normal"> barcelonaRow </span><span class="symbol">=</span><span class="normal"> distance</span><span class="symbol">.</span><span class="function">row</span><span class="symbol">(</span><span class="string">"Barcelona"</span><span class="symbol">);</span>
+<span class="normal">		</span><span class="usertype">Map&lt;String, Double&gt;</span><span class="normal"> warsawColumn </span><span class="symbol">=</span><span class="normal"> distance</span><span class="symbol">.</span><span class="function">column</span><span class="symbol">(</span><span class="string">"Warsaw"</span><span class="symbol">);</span>
+<span class="normal">		</span><span class="usertype">Map&lt;String, Double&gt;</span><span class="normal"> madridColumn </span><span class="symbol">=</span><span class="normal"> distance</span><span class="symbol">.</span><span class="function">column</span><span class="symbol">(</span><span class="string">"Madrid"</span><span class="symbol">);</span>
+
+<span class="normal">		</span><span class="comment">// we clear barcelona</span>
+<span class="normal">		barcelonaRow</span><span class="symbol">.</span><span class="function">clear</span><span class="symbol">();</span>
+
+<span class="normal">		</span><span class="comment">// update warsaw View</span>
+<span class="normal">		warsawColumn</span><span class="symbol">.</span><span class="function">put</span><span class="symbol">(</span><span class="string">"Paris"</span><span class="symbol">,</span><span class="normal"> </span><span class="number">1365.91</span><span class="symbol">);</span>
+<span class="normal">		madridColumn</span><span class="symbol">.</span><span class="function">put</span><span class="symbol">(</span><span class="string">"Paris"</span><span class="symbol">,</span><span class="normal"> </span><span class="number">1053.40</span><span class="symbol">);</span>
+
+<span class="normal">		</span><span class="comment">// then barcelona is empty</span>
+<span class="normal">		</span><span class="function">assertThat</span><span class="symbol">(</span><span class="normal">barcelonaRow</span><span class="symbol">).</span><span class="function">isEmpty</span><span class="symbol">();</span>
+<span class="normal">		</span><span class="comment">// warsaw gets connection from London and Paris but not Barcelona</span>
+<span class="normal">		</span><span class="function">assertThat</span><span class="symbol">(</span><span class="normal">warsawColumn</span><span class="symbol">.</span><span class="function">keySet</span><span class="symbol">()).</span><span class="function">containsOnly</span><span class="symbol">(</span><span class="string">"Paris"</span><span class="symbol">,</span><span class="string">"London"</span><span class="symbol">);</span>
+<span class="normal">		</span><span class="comment">// london row updated in mixed mode is trully updated </span>
+<span class="normal">		</span><span class="function">assertThat</span><span class="symbol">(</span><span class="normal">londonRow</span><span class="symbol">).</span><span class="function">hasSize</span><span class="symbol">(</span><span class="number">2</span><span class="symbol">);</span>
+<span class="normal">		</span><span class="function">assertThat</span><span class="symbol">(</span><span class="normal">distance</span><span class="symbol">.</span><span class="function">row</span><span class="symbol">(</span><span class="string">"Paris"</span><span class="symbol">)).</span><span class="function">hasSize</span><span class="symbol">(</span><span class="number">2</span><span class="symbol">);</span>
+<span class="normal">		</span><span class="function">assertThat</span><span class="symbol">(</span><span class="normal">distance</span><span class="symbol">.</span><span class="function">get</span><span class="symbol">(</span><span class="string">"Paris"</span><span class="symbol">,</span><span class="normal"> </span><span class="string">"Warsaw"</span><span class="symbol">)).</span><span class="function">isEqualTo</span><span class="symbol">(</span><span class="number">1365.91</span><span class="symbol">);</span>
+<span class="normal">	</span><span class="cbracket">}</span>
+<span class="cbracket">}</span>
+</tt></pre>
+</body>
+</html>

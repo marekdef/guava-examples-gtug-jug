@@ -1,0 +1,92 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"
+    "http://www.w3.org/TR/REC-html40/strict.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="GENERATOR" content="GNU source-highlight 3.1.4
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite">
+<title>/home/marekdef/projects/guava-examples-gtug-jug/src/main/java/org/gtug/lodz/collections/MultiMapTest.java</title>
+<link rel="stylesheet" href="source-highlight/sh_darkness.css" type="text/css">
+</head>
+<body>
+<pre><tt><span class="preproc">package</span><span class="normal"> org</span><span class="symbol">.</span><span class="normal">gtug</span><span class="symbol">.</span><span class="normal">lodz</span><span class="symbol">.</span><span class="normal">collections</span><span class="symbol">;</span>
+
+<span class="preproc">import</span><span class="normal"> </span><span class="keyword">static</span><span class="normal"> org</span><span class="symbol">.</span><span class="normal">fest</span><span class="symbol">.</span><span class="normal">assertions</span><span class="symbol">.</span><span class="normal">Assertions</span><span class="symbol">.</span><span class="normal">assertThat</span><span class="symbol">;</span>
+
+<span class="preproc">import</span><span class="normal"> org</span><span class="symbol">.</span><span class="normal">junit</span><span class="symbol">.</span><span class="normal">Before</span><span class="symbol">;</span>
+<span class="preproc">import</span><span class="normal"> org</span><span class="symbol">.</span><span class="normal">junit</span><span class="symbol">.</span><span class="normal">Test</span><span class="symbol">;</span>
+
+<span class="preproc">import</span><span class="normal"> com</span><span class="symbol">.</span><span class="normal">google</span><span class="symbol">.</span><span class="normal">common</span><span class="symbol">.</span><span class="normal">collect</span><span class="symbol">.</span><span class="normal">HashMultimap</span><span class="symbol">;</span>
+<span class="preproc">import</span><span class="normal"> com</span><span class="symbol">.</span><span class="normal">google</span><span class="symbol">.</span><span class="normal">common</span><span class="symbol">.</span><span class="normal">collect</span><span class="symbol">.</span><span class="normal">ImmutableSet</span><span class="symbol">;</span>
+
+<span class="keyword">public</span><span class="normal"> </span><span class="keyword">class</span><span class="normal"> </span><span class="classname">MultiMapTest</span><span class="normal"> </span><span class="cbracket">{</span>
+
+<span class="normal">	</span><span class="keyword">public</span><span class="normal"> </span><span class="usertype">HashMultimap&lt;String, String&gt;</span><span class="normal"> </span><span class="function">create</span><span class="symbol">()</span><span class="normal"> </span><span class="cbracket">{</span>
+<span class="normal">		</span><span class="usertype">HashMultimap&lt;String, String&gt;</span><span class="normal"> family </span><span class="symbol">=</span><span class="normal"> HashMultimap</span><span class="symbol">.</span><span class="function">create</span><span class="symbol">();</span>
+
+<span class="normal">		family</span><span class="symbol">.</span><span class="function">put</span><span class="symbol">(</span><span class="string">"Marek"</span><span class="symbol">,</span><span class="normal"> </span><span class="string">"Ania"</span><span class="symbol">);</span>
+
+<span class="normal">		family</span><span class="symbol">.</span><span class="function">put</span><span class="symbol">(</span><span class="string">"Maria"</span><span class="symbol">,</span><span class="normal"> </span><span class="string">"Eugeniusz"</span><span class="symbol">);</span>
+<span class="normal">		family</span><span class="symbol">.</span><span class="function">put</span><span class="symbol">(</span><span class="string">"Maria"</span><span class="symbol">,</span><span class="normal"> </span><span class="string">"Marek"</span><span class="symbol">);</span>
+
+<span class="normal">		family</span><span class="symbol">.</span><span class="function">put</span><span class="symbol">(</span><span class="string">"Eugeniusz"</span><span class="symbol">,</span><span class="normal"> </span><span class="string">"Maria"</span><span class="symbol">);</span>
+<span class="normal">		family</span><span class="symbol">.</span><span class="function">put</span><span class="symbol">(</span><span class="string">"Eugeniusz"</span><span class="symbol">,</span><span class="normal"> </span><span class="string">"Marek"</span><span class="symbol">);</span>
+<span class="normal">		family</span><span class="symbol">.</span><span class="function">put</span><span class="symbol">(</span><span class="string">"Eugeniusz"</span><span class="symbol">,</span><span class="normal"> </span><span class="string">"Marek"</span><span class="symbol">);</span>
+
+<span class="normal">		</span><span class="comment">// does not blow even Piotr does not exist before</span>
+<span class="normal">		family</span><span class="symbol">.</span><span class="function">get</span><span class="symbol">(</span><span class="string">"Piotr"</span><span class="symbol">).</span><span class="function">remove</span><span class="symbol">(</span><span class="string">"Ania"</span><span class="symbol">);</span>
+
+<span class="normal">		</span><span class="keyword">return</span><span class="normal"> family</span><span class="symbol">;</span>
+<span class="normal">	</span><span class="cbracket">}</span>
+
+<span class="normal">	@Test</span>
+<span class="normal">	</span><span class="keyword">public</span><span class="normal"> </span><span class="type">void</span><span class="normal"> </span><span class="function">testMultiMapCreation</span><span class="symbol">()</span><span class="normal"> </span><span class="cbracket">{</span>
+<span class="normal">		</span><span class="comment">//given created map </span>
+<span class="normal">		</span><span class="usertype">HashMultimap&lt;String, String&gt;</span><span class="normal"> family </span><span class="symbol">=</span><span class="normal"> </span><span class="function">create</span><span class="symbol">();</span>
+<span class="normal">		</span><span class="comment">//when</span>
+<span class="normal">		</span>
+<span class="normal">		</span><span class="comment">//then is correcly created</span>
+<span class="normal">		</span><span class="function">assertThat</span><span class="symbol">(</span><span class="normal">family</span><span class="symbol">.</span><span class="function">get</span><span class="symbol">(</span><span class="string">"Marek"</span><span class="symbol">)).</span><span class="function">hasSize</span><span class="symbol">(</span><span class="number">1</span><span class="symbol">);</span>
+<span class="normal">		</span><span class="function">assertThat</span><span class="symbol">(</span><span class="normal">family</span><span class="symbol">.</span><span class="function">get</span><span class="symbol">(</span><span class="string">"Maria"</span><span class="symbol">)).</span><span class="function">hasSize</span><span class="symbol">(</span><span class="number">2</span><span class="symbol">);</span>
+<span class="normal">		</span><span class="function">assertThat</span><span class="symbol">(</span><span class="normal">family</span><span class="symbol">.</span><span class="function">get</span><span class="symbol">(</span><span class="string">"Eugeniusz"</span><span class="symbol">)).</span><span class="function">hasSize</span><span class="symbol">(</span><span class="number">2</span><span class="symbol">);</span>
+<span class="normal">		</span><span class="function">assertThat</span><span class="symbol">(</span><span class="normal">family</span><span class="symbol">.</span><span class="function">get</span><span class="symbol">(</span><span class="string">"Krzysiek"</span><span class="symbol">)).</span><span class="function">isNotNull</span><span class="symbol">();</span>
+<span class="normal">	</span><span class="cbracket">}</span>
+
+<span class="normal">	@Test</span>
+<span class="normal">	</span><span class="keyword">public</span><span class="normal"> </span><span class="type">void</span><span class="normal"> </span><span class="function">testMultiMapNoNullsValues</span><span class="symbol">()</span><span class="normal"> </span><span class="cbracket">{</span>
+<span class="normal">		</span><span class="comment">// given</span>
+<span class="normal">		</span><span class="usertype">HashMultimap&lt;String, String&gt;</span><span class="normal"> family </span><span class="symbol">=</span><span class="normal"> </span><span class="function">create</span><span class="symbol">();</span>
+<span class="normal">		</span><span class="comment">// when</span>
+
+<span class="normal">		</span><span class="comment">// then</span>
+<span class="normal">		</span><span class="function">assertThat</span><span class="symbol">(</span><span class="normal">family</span><span class="symbol">.</span><span class="function">get</span><span class="symbol">(</span><span class="string">"Ania"</span><span class="symbol">)).</span><span class="function">isNotNull</span><span class="symbol">();</span>
+<span class="normal">		</span><span class="function">assertThat</span><span class="symbol">(</span><span class="normal">family</span><span class="symbol">.</span><span class="function">get</span><span class="symbol">(</span><span class="string">"Piotr"</span><span class="symbol">).</span><span class="function">contains</span><span class="symbol">(</span><span class="string">"Ania"</span><span class="symbol">)).</span><span class="function">isFalse</span><span class="symbol">();</span>
+<span class="normal">	</span><span class="cbracket">}</span>
+
+<span class="normal">	@Test</span>
+<span class="normal">	</span><span class="keyword">public</span><span class="normal"> </span><span class="type">void</span><span class="normal"> </span><span class="function">testMultiMapAdditionOnViews</span><span class="symbol">()</span><span class="normal"> </span><span class="cbracket">{</span>
+<span class="normal">		</span><span class="comment">// given</span>
+<span class="normal">		</span><span class="usertype">HashMultimap&lt;String, String&gt;</span><span class="normal"> family </span><span class="symbol">=</span><span class="normal"> </span><span class="function">create</span><span class="symbol">();</span>
+<span class="normal">		</span><span class="comment">// when operating on view</span>
+<span class="normal">		family</span><span class="symbol">.</span><span class="function">get</span><span class="symbol">(</span><span class="string">"Piotr"</span><span class="symbol">).</span><span class="function">addAll</span><span class="symbol">(</span><span class="normal">ImmutableSet</span><span class="symbol">.</span><span class="function">of</span><span class="symbol">(</span><span class="string">"Ania"</span><span class="symbol">,</span><span class="normal"> </span><span class="string">"Krzysiek"</span><span class="symbol">));</span>
+<span class="normal">		</span><span class="comment">// then we get all added</span>
+<span class="normal">		</span><span class="function">assertThat</span><span class="symbol">(</span><span class="normal">family</span><span class="symbol">.</span><span class="function">get</span><span class="symbol">(</span><span class="string">"Piotr"</span><span class="symbol">)).</span><span class="function">contains</span><span class="symbol">(</span><span class="string">"Krzysiek"</span><span class="symbol">,</span><span class="normal"> </span><span class="string">"Ania"</span><span class="symbol">);</span>
+<span class="normal">	</span><span class="cbracket">}</span>
+
+<span class="normal">	@Test</span>
+<span class="normal">	</span><span class="keyword">public</span><span class="normal"> </span><span class="type">void</span><span class="normal"> </span><span class="function">testMultiMapOnNull</span><span class="symbol">()</span><span class="normal"> </span><span class="cbracket">{</span>
+<span class="normal">		</span><span class="comment">// given</span>
+<span class="normal">		</span><span class="usertype">HashMultimap&lt;String, String&gt;</span><span class="normal"> family </span><span class="symbol">=</span><span class="normal"> </span><span class="function">create</span><span class="symbol">();</span>
+<span class="normal">		</span><span class="comment">// when putting null values</span>
+<span class="normal">		family</span><span class="symbol">.</span><span class="function">put</span><span class="symbol">(</span><span class="keyword">null</span><span class="symbol">,</span><span class="normal"> </span><span class="keyword">null</span><span class="symbol">);</span>
+<span class="normal">		</span><span class="comment">// then we get a set containing null</span>
+<span class="normal">		</span><span class="function">assertThat</span><span class="symbol">(</span><span class="normal">family</span><span class="symbol">.</span><span class="function">get</span><span class="symbol">(</span><span class="keyword">null</span><span class="symbol">)).</span><span class="function">hasSize</span><span class="symbol">(</span><span class="number">1</span><span class="symbol">);</span>
+<span class="normal">		</span><span class="function">assertThat</span><span class="symbol">(</span><span class="normal">family</span><span class="symbol">.</span><span class="function">get</span><span class="symbol">(</span><span class="keyword">null</span><span class="symbol">)).</span><span class="function">containsOnly</span><span class="symbol">(</span><span class="keyword">new</span><span class="normal"> Object</span><span class="symbol">[]</span><span class="normal"> </span><span class="cbracket">{</span><span class="normal"> </span><span class="keyword">null</span><span class="normal"> </span><span class="cbracket">}</span><span class="symbol">);</span>
+<span class="normal">	</span><span class="cbracket">}</span>
+
+<span class="cbracket">}</span>
+</tt></pre>
+</body>
+</html>

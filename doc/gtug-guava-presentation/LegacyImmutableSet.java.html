@@ -1,0 +1,42 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"
+    "http://www.w3.org/TR/REC-html40/strict.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="GENERATOR" content="GNU source-highlight 3.1.4
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite">
+<title>/home/marekdef/projects/guava-examples-gtug-jug/src/main/java/org/gtug/lodz/collections/LegacyImmutableSet.java</title>
+<link rel="stylesheet" href="source-highlight/sh_darkness.css" type="text/css">
+</head>
+<body>
+<pre><tt><span class="preproc">package</span><span class="normal"> org</span><span class="symbol">.</span><span class="normal">gtug</span><span class="symbol">.</span><span class="normal">lodz</span><span class="symbol">.</span><span class="normal">collections</span><span class="symbol">;</span>
+
+<span class="preproc">import</span><span class="normal"> java</span><span class="symbol">.</span><span class="normal">util</span><span class="symbol">.</span><span class="normal">Arrays</span><span class="symbol">;</span>
+<span class="preproc">import</span><span class="normal"> java</span><span class="symbol">.</span><span class="normal">util</span><span class="symbol">.</span><span class="normal">Collections</span><span class="symbol">;</span>
+<span class="preproc">import</span><span class="normal"> java</span><span class="symbol">.</span><span class="normal">util</span><span class="symbol">.</span><span class="normal">HashSet</span><span class="symbol">;</span>
+<span class="preproc">import</span><span class="normal"> java</span><span class="symbol">.</span><span class="normal">util</span><span class="symbol">.</span><span class="normal">Set</span><span class="symbol">;</span>
+
+<span class="keyword">public</span><span class="normal"> </span><span class="keyword">class</span><span class="normal"> </span><span class="classname">LegacyImmutableSet</span><span class="normal"> </span><span class="cbracket">{</span>
+<span class="normal">	</span><span class="keyword">public</span><span class="normal"> </span><span class="keyword">static</span><span class="normal"> </span><span class="keyword">final</span><span class="normal"> </span><span class="usertype">Set&lt;String&gt;</span><span class="normal"> COUNTRIES</span><span class="symbol">;</span>
+
+<span class="normal">	</span><span class="keyword">static</span><span class="normal"> </span><span class="cbracket">{</span>
+<span class="normal">		</span><span class="usertype">Set&lt;String&gt;</span><span class="normal"> internal </span><span class="symbol">=</span><span class="normal"> </span><span class="keyword">new</span><span class="normal"> HashSet</span><span class="symbol">&lt;</span><span class="normal">String</span><span class="symbol">&gt;();</span>
+<span class="normal">		internal</span><span class="symbol">.</span><span class="function">add</span><span class="symbol">(</span><span class="string">"Poland"</span><span class="symbol">);</span>
+<span class="normal">		internal</span><span class="symbol">.</span><span class="function">add</span><span class="symbol">(</span><span class="string">"Germany"</span><span class="symbol">);</span>
+<span class="normal">		internal</span><span class="symbol">.</span><span class="function">add</span><span class="symbol">(</span><span class="string">"France"</span><span class="symbol">);</span>
+<span class="normal">		internal</span><span class="symbol">.</span><span class="function">add</span><span class="symbol">(</span><span class="string">"Spain"</span><span class="symbol">);</span>
+<span class="normal">		internal</span><span class="symbol">.</span><span class="function">add</span><span class="symbol">(</span><span class="string">"Greece"</span><span class="symbol">);</span>
+
+<span class="normal">		COUNTRIES </span><span class="symbol">=</span><span class="normal"> Collections</span><span class="symbol">.</span><span class="function">unmodifiableSet</span><span class="symbol">(</span><span class="normal">internal</span><span class="symbol">);</span>
+<span class="normal">	</span><span class="cbracket">}</span>
+
+<span class="normal">	</span><span class="keyword">static</span><span class="normal"> </span><span class="cbracket">{</span>
+<span class="normal">		Collections</span><span class="symbol">.</span><span class="function">unmodifiableSet</span><span class="symbol">(</span><span class="keyword">new</span><span class="normal"> HashSet</span><span class="symbol">&lt;</span><span class="normal">String</span><span class="symbol">&gt;(</span><span class="normal">Arrays</span><span class="symbol">.</span><span class="function">asList</span><span class="symbol">(</span><span class="string">"Poland"</span><span class="symbol">,</span>
+<span class="normal">				</span><span class="string">"Germany"</span><span class="symbol">,</span><span class="normal"> </span><span class="string">"France"</span><span class="symbol">,</span><span class="normal"> </span><span class="string">"Spain"</span><span class="symbol">,</span><span class="normal"> </span><span class="string">"Greece"</span><span class="symbol">)));</span>
+<span class="normal">	</span><span class="cbracket">}</span>
+<span class="cbracket">}</span>
+</tt></pre>
+</body>
+</html>

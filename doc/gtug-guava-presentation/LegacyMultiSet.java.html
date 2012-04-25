@@ -1,0 +1,87 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"
+    "http://www.w3.org/TR/REC-html40/strict.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="GENERATOR" content="GNU source-highlight 3.1.4
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite">
+<title>/home/marekdef/projects/guava-examples-gtug-jug/src/main/java/org/gtug/lodz/collections/LegacyMultiSet.java</title>
+<link rel="stylesheet" href="source-highlight/sh_darkness.css" type="text/css">
+</head>
+<body>
+<pre><tt><span class="preproc">package</span><span class="normal"> org</span><span class="symbol">.</span><span class="normal">gtug</span><span class="symbol">.</span><span class="normal">lodz</span><span class="symbol">.</span><span class="normal">collections</span><span class="symbol">;</span>
+
+<span class="preproc">import</span><span class="normal"> java</span><span class="symbol">.</span><span class="normal">util</span><span class="symbol">.</span><span class="normal">Collections</span><span class="symbol">;</span>
+<span class="preproc">import</span><span class="normal"> java</span><span class="symbol">.</span><span class="normal">util</span><span class="symbol">.</span><span class="normal">HashMap</span><span class="symbol">;</span>
+<span class="preproc">import</span><span class="normal"> java</span><span class="symbol">.</span><span class="normal">util</span><span class="symbol">.</span><span class="normal">Map</span><span class="symbol">;</span>
+<span class="preproc">import</span><span class="normal"> java</span><span class="symbol">.</span><span class="normal">util</span><span class="symbol">.</span><span class="normal">Set</span><span class="symbol">;</span>
+
+<span class="preproc">import</span><span class="normal"> com</span><span class="symbol">.</span><span class="normal">google</span><span class="symbol">.</span><span class="normal">common</span><span class="symbol">.</span><span class="normal">base</span><span class="symbol">.</span><span class="normal">Preconditions</span><span class="symbol">;</span>
+
+<span class="keyword">public</span><span class="normal"> </span><span class="keyword">class</span><span class="normal"> </span><span class="classname">LegacyMultiSet</span><span class="symbol">&lt;</span><span class="normal">E</span><span class="symbol">&gt;</span><span class="normal"> </span><span class="cbracket">{</span>
+<span class="normal">	</span><span class="keyword">public</span><span class="normal"> </span><span class="keyword">static</span><span class="normal"> </span><span class="symbol">&lt;</span><span class="normal">E</span><span class="symbol">&gt;</span><span class="normal"> </span><span class="usertype">LegacyMultiSet&lt;E&gt;</span><span class="normal"> </span><span class="function">create</span><span class="symbol">()</span><span class="normal"> </span><span class="cbracket">{</span>
+<span class="normal">		</span><span class="keyword">return</span><span class="normal"> </span><span class="keyword">new</span><span class="normal"> LegacyMultiSet</span><span class="symbol">&lt;</span><span class="normal">E</span><span class="symbol">&gt;();</span>
+<span class="normal">	</span><span class="cbracket">}</span>
+
+<span class="normal">	</span><span class="keyword">private</span><span class="normal"> </span><span class="function">LegacyMultiSet</span><span class="symbol">()</span><span class="normal"> </span><span class="cbracket">{</span>
+
+<span class="normal">	</span><span class="cbracket">}</span>
+
+<span class="normal">	</span><span class="usertype">Map&lt;E, Integer&gt;</span><span class="normal"> objectCounts </span><span class="symbol">=</span><span class="normal"> </span><span class="keyword">new</span><span class="normal"> HashMap</span><span class="symbol">&lt;</span><span class="normal">E</span><span class="symbol">,</span><span class="normal"> Integer</span><span class="symbol">&gt;();</span>
+
+<span class="normal">	</span><span class="keyword">public</span><span class="normal"> </span><span class="type">void</span><span class="normal"> </span><span class="function">add</span><span class="symbol">(</span><span class="usertype">E</span><span class="normal"> obj</span><span class="symbol">)</span><span class="normal"> </span><span class="cbracket">{</span>
+<span class="normal">		</span><span class="usertype">Integer</span><span class="normal"> count </span><span class="symbol">=</span><span class="normal"> objectCounts</span><span class="symbol">.</span><span class="function">get</span><span class="symbol">(</span><span class="normal">obj</span><span class="symbol">);</span>
+<span class="normal">		</span><span class="keyword">if</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">count </span><span class="symbol">==</span><span class="normal"> </span><span class="keyword">null</span><span class="symbol">)</span><span class="normal"> </span><span class="cbracket">{</span>
+<span class="normal">			objectCounts</span><span class="symbol">.</span><span class="function">put</span><span class="symbol">(</span><span class="normal">obj</span><span class="symbol">,</span><span class="normal"> </span><span class="number">1</span><span class="symbol">);</span>
+<span class="normal">		</span><span class="cbracket">}</span><span class="normal"> </span><span class="keyword">else</span><span class="normal"> </span><span class="cbracket">{</span>
+<span class="normal">			objectCounts</span><span class="symbol">.</span><span class="function">put</span><span class="symbol">(</span><span class="normal">obj</span><span class="symbol">,</span><span class="normal"> </span><span class="symbol">++</span><span class="normal">count</span><span class="symbol">);</span>
+<span class="normal">		</span><span class="cbracket">}</span>
+<span class="normal">	</span><span class="cbracket">}</span>
+
+<span class="normal">	</span><span class="keyword">public</span><span class="normal"> </span><span class="type">void</span><span class="normal"> </span><span class="function">add</span><span class="symbol">(</span><span class="usertype">E</span><span class="normal"> obj</span><span class="symbol">,</span><span class="normal"> </span><span class="type">int</span><span class="normal"> times</span><span class="symbol">)</span><span class="normal"> </span><span class="cbracket">{</span>
+<span class="normal">		</span><span class="keyword">for</span><span class="normal"> </span><span class="symbol">(</span><span class="type">int</span><span class="normal"> i </span><span class="symbol">=</span><span class="normal"> </span><span class="number">0</span><span class="symbol">;</span><span class="normal"> i </span><span class="symbol">&lt;</span><span class="normal"> times</span><span class="symbol">;</span><span class="normal"> </span><span class="symbol">++</span><span class="normal">i</span><span class="symbol">)</span><span class="normal"> </span><span class="cbracket">{</span>
+<span class="normal">			</span><span class="function">add</span><span class="symbol">(</span><span class="normal">obj</span><span class="symbol">);</span>
+<span class="normal">		</span><span class="cbracket">}</span>
+<span class="normal">	</span><span class="cbracket">}</span>
+
+<span class="normal">	</span><span class="keyword">public</span><span class="normal"> </span><span class="type">void</span><span class="normal"> </span><span class="function">remove</span><span class="symbol">(</span><span class="usertype">E</span><span class="normal"> obj</span><span class="symbol">)</span><span class="normal"> </span><span class="cbracket">{</span>
+<span class="normal">		</span><span class="usertype">Integer</span><span class="normal"> count </span><span class="symbol">=</span><span class="normal"> objectCounts</span><span class="symbol">.</span><span class="function">remove</span><span class="symbol">(</span><span class="normal">obj</span><span class="symbol">);</span>
+<span class="normal">		</span><span class="keyword">if</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">count </span><span class="symbol">!=</span><span class="normal"> </span><span class="keyword">null</span><span class="normal"> </span><span class="symbol">&amp;&amp;</span><span class="normal"> count </span><span class="symbol">&gt;</span><span class="normal"> </span><span class="number">1</span><span class="symbol">)</span><span class="normal"> </span><span class="cbracket">{</span>
+<span class="normal">			objectCounts</span><span class="symbol">.</span><span class="function">put</span><span class="symbol">(</span><span class="normal">obj</span><span class="symbol">,</span><span class="normal"> </span><span class="symbol">--</span><span class="normal">count</span><span class="symbol">);</span>
+<span class="normal">		</span><span class="cbracket">}</span>
+<span class="normal">	</span><span class="cbracket">}</span>
+
+<span class="normal">	</span><span class="keyword">public</span><span class="normal"> </span><span class="type">void</span><span class="normal"> </span><span class="function">remove</span><span class="symbol">(</span><span class="usertype">E</span><span class="normal"> obj</span><span class="symbol">,</span><span class="normal"> </span><span class="type">int</span><span class="normal"> times</span><span class="symbol">)</span><span class="normal"> </span><span class="cbracket">{</span>
+<span class="normal">		</span><span class="keyword">for</span><span class="normal"> </span><span class="symbol">(</span><span class="type">int</span><span class="normal"> i </span><span class="symbol">=</span><span class="normal"> </span><span class="number">0</span><span class="symbol">;</span><span class="normal"> i </span><span class="symbol">&lt;</span><span class="normal"> times</span><span class="symbol">;</span><span class="normal"> </span><span class="symbol">++</span><span class="normal">i</span><span class="symbol">)</span><span class="normal"> </span><span class="cbracket">{</span>
+<span class="normal">			</span><span class="function">remove</span><span class="symbol">(</span><span class="normal">obj</span><span class="symbol">);</span>
+<span class="normal">		</span><span class="cbracket">}</span>
+<span class="normal">	</span><span class="cbracket">}</span>
+
+<span class="normal">	</span><span class="keyword">public</span><span class="normal"> </span><span class="type">int</span><span class="normal"> </span><span class="function">count</span><span class="symbol">(</span><span class="usertype">E</span><span class="normal"> obj</span><span class="symbol">)</span><span class="normal"> </span><span class="cbracket">{</span>
+<span class="normal">		</span><span class="usertype">Integer</span><span class="normal"> count </span><span class="symbol">=</span><span class="normal"> objectCounts</span><span class="symbol">.</span><span class="function">get</span><span class="symbol">(</span><span class="normal">obj</span><span class="symbol">);</span>
+<span class="normal">		</span><span class="keyword">if</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">count </span><span class="symbol">==</span><span class="normal"> </span><span class="keyword">null</span><span class="symbol">)</span><span class="normal"> </span><span class="cbracket">{</span>
+<span class="normal">			</span><span class="keyword">return</span><span class="normal"> </span><span class="number">0</span><span class="symbol">;</span>
+<span class="normal">		</span><span class="cbracket">}</span><span class="normal"> </span><span class="keyword">else</span><span class="normal"> </span><span class="cbracket">{</span>
+<span class="normal">			</span><span class="keyword">return</span><span class="normal"> count</span><span class="symbol">;</span>
+<span class="normal">		</span><span class="cbracket">}</span>
+<span class="normal">	</span><span class="cbracket">}</span>
+
+<span class="normal">	</span><span class="keyword">public</span><span class="normal"> </span><span class="usertype">Set&lt;E&gt;</span><span class="normal"> </span><span class="function">elementSet</span><span class="symbol">()</span><span class="normal"> </span><span class="cbracket">{</span>
+<span class="normal">		</span><span class="keyword">return</span><span class="normal"> Collections</span><span class="symbol">.</span><span class="function">unmodifiableSet</span><span class="symbol">(</span><span class="normal">objectCounts</span><span class="symbol">.</span><span class="function">keySet</span><span class="symbol">());</span>
+<span class="normal">	</span><span class="cbracket">}</span>
+
+<span class="normal">	</span><span class="keyword">public</span><span class="normal"> </span><span class="type">void</span><span class="normal"> </span><span class="function">setCount</span><span class="symbol">(</span><span class="usertype">E</span><span class="normal"> object</span><span class="symbol">,</span><span class="normal"> </span><span class="type">int</span><span class="normal"> count</span><span class="symbol">)</span><span class="normal"> </span><span class="cbracket">{</span>
+<span class="normal">		Preconditions</span><span class="symbol">.</span><span class="function">checkArgument</span><span class="symbol">(</span><span class="normal">count </span><span class="symbol">&gt;=</span><span class="normal"> </span><span class="number">0</span><span class="symbol">,</span>
+<span class="normal">				</span><span class="string">"Arguments should be at least zero %d given"</span><span class="symbol">,</span><span class="normal"> count</span><span class="symbol">);</span>
+<span class="normal">		</span><span class="keyword">if</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">count </span><span class="symbol">==</span><span class="normal"> </span><span class="number">0</span><span class="symbol">)</span>
+<span class="normal">			objectCounts</span><span class="symbol">.</span><span class="function">remove</span><span class="symbol">(</span><span class="normal">object</span><span class="symbol">);</span>
+<span class="normal">		</span><span class="keyword">else</span>
+<span class="normal">			objectCounts</span><span class="symbol">.</span><span class="function">put</span><span class="symbol">(</span><span class="normal">object</span><span class="symbol">,</span><span class="normal"> count</span><span class="symbol">);</span>
+
+<span class="normal">	</span><span class="cbracket">}</span>
+<span class="cbracket">}</span>
+</tt></pre>
+</body>
+</html>

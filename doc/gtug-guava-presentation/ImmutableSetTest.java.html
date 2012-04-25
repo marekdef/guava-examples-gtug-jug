@@ -1,0 +1,77 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"
+    "http://www.w3.org/TR/REC-html40/strict.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="GENERATOR" content="GNU source-highlight 3.1.4
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite">
+<title>/home/marekdef/projects/guava-examples-gtug-jug/src/main/java/org/gtug/lodz/collections/ImmutableSetTest.java</title>
+<link rel="stylesheet" href="source-highlight/sh_darkness.css" type="text/css">
+</head>
+<body>
+<pre><tt><span class="preproc">package</span><span class="normal"> org</span><span class="symbol">.</span><span class="normal">gtug</span><span class="symbol">.</span><span class="normal">lodz</span><span class="symbol">.</span><span class="normal">collections</span><span class="symbol">;</span>
+
+<span class="preproc">import</span><span class="normal"> </span><span class="keyword">static</span><span class="normal"> org</span><span class="symbol">.</span><span class="normal">fest</span><span class="symbol">.</span><span class="normal">assertions</span><span class="symbol">.</span><span class="normal">Assertions</span><span class="symbol">.</span><span class="normal">assertThat</span><span class="symbol">;</span>
+
+<span class="preproc">import</span><span class="normal"> org</span><span class="symbol">.</span><span class="normal">junit</span><span class="symbol">.</span><span class="normal">Rule</span><span class="symbol">;</span>
+<span class="preproc">import</span><span class="normal"> org</span><span class="symbol">.</span><span class="normal">junit</span><span class="symbol">.</span><span class="normal">Test</span><span class="symbol">;</span>
+<span class="preproc">import</span><span class="normal"> org</span><span class="symbol">.</span><span class="normal">junit</span><span class="symbol">.</span><span class="normal">rules</span><span class="symbol">.</span><span class="normal">ExpectedException</span><span class="symbol">;</span>
+
+<span class="preproc">import</span><span class="normal"> com</span><span class="symbol">.</span><span class="normal">google</span><span class="symbol">.</span><span class="normal">common</span><span class="symbol">.</span><span class="normal">collect</span><span class="symbol">.</span><span class="normal">ImmutableList</span><span class="symbol">;</span>
+<span class="preproc">import</span><span class="normal"> com</span><span class="symbol">.</span><span class="normal">google</span><span class="symbol">.</span><span class="normal">common</span><span class="symbol">.</span><span class="normal">collect</span><span class="symbol">.</span><span class="normal">ImmutableSet</span><span class="symbol">;</span>
+
+<span class="keyword">public</span><span class="normal"> </span><span class="keyword">class</span><span class="normal"> </span><span class="classname">ImmutableSetTest</span><span class="normal"> </span><span class="cbracket">{</span>
+<span class="normal">	@Rule</span>
+<span class="normal">	</span><span class="keyword">public</span><span class="normal"> </span><span class="usertype">ExpectedException</span><span class="normal"> thrown </span><span class="symbol">=</span><span class="normal"> ExpectedException</span><span class="symbol">.</span><span class="function">none</span><span class="symbol">();</span>
+
+<span class="normal">	</span><span class="keyword">private</span><span class="normal"> </span><span class="keyword">static</span><span class="normal"> </span><span class="keyword">final</span><span class="normal"> </span><span class="usertype">ImmutableSet&lt;String&gt;</span><span class="normal"> COUNTRIES </span><span class="symbol">=</span><span class="normal"> ImmutableSet</span><span class="symbol">.</span><span class="function">of</span><span class="symbol">(</span>
+<span class="normal">			</span><span class="string">"Poland"</span><span class="symbol">,</span><span class="normal"> </span><span class="string">"Germany"</span><span class="symbol">,</span><span class="normal"> </span><span class="string">"France"</span><span class="symbol">,</span><span class="normal"> </span><span class="string">"Spain"</span><span class="symbol">,</span><span class="normal"> </span><span class="string">"Greece"</span><span class="symbol">);</span>
+
+<span class="normal">	@Test</span>
+<span class="normal">	</span><span class="keyword">public</span><span class="normal"> </span><span class="type">void</span><span class="normal"> </span><span class="function">testImmutability</span><span class="symbol">()</span><span class="normal"> </span><span class="cbracket">{</span>
+<span class="normal">		</span><span class="comment">// given?</span>
+<span class="normal">		thrown</span><span class="symbol">.</span><span class="function">expect</span><span class="symbol">(</span><span class="normal">UnsupportedOperationException</span><span class="symbol">.</span><span class="keyword">class</span><span class="symbol">);</span>
+<span class="normal">		</span><span class="comment">// when</span>
+<span class="normal">		COUNTRIES</span><span class="symbol">.</span><span class="function">add</span><span class="symbol">(</span><span class="string">"Portugal"</span><span class="symbol">);</span>
+<span class="normal">		</span><span class="comment">// then</span>
+<span class="normal">	</span><span class="cbracket">}</span>
+
+<span class="normal">	@Test</span>
+<span class="normal">	</span><span class="keyword">public</span><span class="normal"> </span><span class="type">void</span><span class="normal"> </span><span class="function">testImmutabilityOnView</span><span class="symbol">()</span><span class="normal"> </span><span class="cbracket">{</span>
+<span class="normal">		</span><span class="comment">// given?</span>
+<span class="normal">		thrown</span><span class="symbol">.</span><span class="function">expect</span><span class="symbol">(</span><span class="normal">UnsupportedOperationException</span><span class="symbol">.</span><span class="keyword">class</span><span class="symbol">);</span>
+
+<span class="normal">		</span><span class="comment">// when?</span>
+<span class="normal">		</span><span class="usertype">ImmutableList&lt;String&gt;</span><span class="normal"> asList </span><span class="symbol">=</span><span class="normal"> COUNTRIES</span><span class="symbol">.</span><span class="function">asList</span><span class="symbol">();</span>
+<span class="normal">		asList</span><span class="symbol">.</span><span class="function">add</span><span class="symbol">(</span><span class="string">"Portugal"</span><span class="symbol">);</span>
+
+<span class="normal">		</span><span class="comment">// then</span>
+<span class="normal">	</span><span class="cbracket">}</span>
+
+<span class="normal">	@Test</span>
+<span class="normal">	</span><span class="keyword">public</span><span class="normal"> </span><span class="type">void</span><span class="normal"> </span><span class="function">testImmutabilitySmart</span><span class="symbol">()</span><span class="normal"> </span><span class="cbracket">{</span>
+<span class="normal">		</span><span class="comment">// given</span>
+
+<span class="normal">		</span><span class="comment">// when</span>
+<span class="normal">		</span><span class="usertype">ImmutableSet&lt;String&gt;</span><span class="normal"> copyOf </span><span class="symbol">=</span><span class="normal"> ImmutableSet</span><span class="symbol">.</span><span class="function">copyOf</span><span class="symbol">(</span><span class="normal">COUNTRIES</span><span class="symbol">);</span>
+
+<span class="normal">		</span><span class="comment">// then</span>
+<span class="normal">		</span><span class="function">assertThat</span><span class="symbol">(</span><span class="normal">copyOf</span><span class="symbol">).</span><span class="function">isSameAs</span><span class="symbol">(</span><span class="normal">COUNTRIES</span><span class="symbol">);</span>
+<span class="normal">	</span><span class="cbracket">}</span>
+
+<span class="normal">	@Test</span>
+<span class="normal">	</span><span class="keyword">public</span><span class="normal"> </span><span class="type">void</span><span class="normal"> </span><span class="function">testImmutableEqual</span><span class="symbol">()</span><span class="normal"> </span><span class="cbracket">{</span>
+<span class="normal">		</span><span class="comment">// given</span>
+<span class="normal">		</span><span class="usertype">ImmutableSet&lt;String&gt;</span><span class="normal"> copyOf </span><span class="symbol">=</span><span class="normal"> ImmutableSet</span><span class="symbol">.</span><span class="function">of</span><span class="symbol">(</span><span class="string">"Greece"</span><span class="symbol">,</span><span class="normal"> </span><span class="string">"Spain"</span><span class="symbol">,</span>
+<span class="normal">				</span><span class="string">"France"</span><span class="symbol">,</span><span class="normal"> </span><span class="string">"Germany"</span><span class="symbol">,</span><span class="normal"> </span><span class="string">"Poland"</span><span class="symbol">);</span>
+<span class="normal">		</span><span class="comment">// when</span>
+
+<span class="normal">		</span><span class="comment">// then</span>
+<span class="normal">		</span><span class="function">assertThat</span><span class="symbol">(</span><span class="normal">copyOf</span><span class="symbol">).</span><span class="function">isEqualTo</span><span class="symbol">(</span><span class="normal">COUNTRIES</span><span class="symbol">);</span>
+<span class="normal">	</span><span class="cbracket">}</span>
+<span class="cbracket">}</span>
+</tt></pre>
+</body>
+</html>

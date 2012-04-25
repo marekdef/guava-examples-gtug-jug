@@ -1,0 +1,74 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"
+    "http://www.w3.org/TR/REC-html40/strict.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="GENERATOR" content="GNU source-highlight 3.1.4
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite">
+<title>/home/marekdef/projects/guava-examples-gtug-jug/src/main/java/org/gtug/lodz/collections/BiMapTest.java</title>
+<link rel="stylesheet" href="source-highlight/sh_darkness.css" type="text/css">
+</head>
+<body>
+<pre><tt><span class="preproc">package</span><span class="normal"> org</span><span class="symbol">.</span><span class="normal">gtug</span><span class="symbol">.</span><span class="normal">lodz</span><span class="symbol">.</span><span class="normal">collections</span><span class="symbol">;</span>
+
+<span class="preproc">import</span><span class="normal"> </span><span class="keyword">static</span><span class="normal"> org</span><span class="symbol">.</span><span class="normal">fest</span><span class="symbol">.</span><span class="normal">assertions</span><span class="symbol">.</span><span class="normal">Assertions</span><span class="symbol">.</span><span class="normal">assertThat</span><span class="symbol">;</span>
+<span class="preproc">import</span><span class="normal"> </span><span class="keyword">static</span><span class="normal"> org</span><span class="symbol">.</span><span class="normal">fest</span><span class="symbol">.</span><span class="normal">assertions</span><span class="symbol">.</span><span class="normal">MapAssert</span><span class="symbol">.</span><span class="normal">entry</span><span class="symbol">;</span>
+
+<span class="preproc">import</span><span class="normal"> org</span><span class="symbol">.</span><span class="normal">junit</span><span class="symbol">.</span><span class="normal">Rule</span><span class="symbol">;</span>
+<span class="preproc">import</span><span class="normal"> org</span><span class="symbol">.</span><span class="normal">junit</span><span class="symbol">.</span><span class="normal">Test</span><span class="symbol">;</span>
+<span class="preproc">import</span><span class="normal"> org</span><span class="symbol">.</span><span class="normal">junit</span><span class="symbol">.</span><span class="normal">rules</span><span class="symbol">.</span><span class="normal">ExpectedException</span><span class="symbol">;</span>
+
+<span class="preproc">import</span><span class="normal"> com</span><span class="symbol">.</span><span class="normal">google</span><span class="symbol">.</span><span class="normal">common</span><span class="symbol">.</span><span class="normal">collect</span><span class="symbol">.</span><span class="normal">BiMap</span><span class="symbol">;</span>
+<span class="preproc">import</span><span class="normal"> com</span><span class="symbol">.</span><span class="normal">google</span><span class="symbol">.</span><span class="normal">common</span><span class="symbol">.</span><span class="normal">collect</span><span class="symbol">.</span><span class="normal">HashBiMap</span><span class="symbol">;</span>
+
+<span class="keyword">public</span><span class="normal"> </span><span class="keyword">class</span><span class="normal"> </span><span class="classname">BiMapTest</span><span class="normal"> </span><span class="cbracket">{</span>
+<span class="normal">	@Rule</span>
+<span class="normal">	</span><span class="keyword">public</span><span class="normal"> </span><span class="usertype">ExpectedException</span><span class="normal"> thrown </span><span class="symbol">=</span><span class="normal"> ExpectedException</span><span class="symbol">.</span><span class="function">none</span><span class="symbol">();</span>
+
+<span class="normal">	</span><span class="keyword">public</span><span class="normal"> </span><span class="usertype">HashBiMap&lt;String, String&gt;</span><span class="normal"> </span><span class="function">create</span><span class="symbol">()</span><span class="normal"> </span><span class="cbracket">{</span>
+<span class="normal">		</span><span class="usertype">HashBiMap&lt;String, String&gt;</span><span class="normal"> capitals </span><span class="symbol">=</span><span class="normal"> HashBiMap</span><span class="symbol">.</span><span class="function">create</span><span class="symbol">();</span>
+
+<span class="normal">		capitals</span><span class="symbol">.</span><span class="function">put</span><span class="symbol">(</span><span class="string">"Germany"</span><span class="symbol">,</span><span class="normal"> </span><span class="string">"Berlin"</span><span class="symbol">);</span>
+<span class="normal">		capitals</span><span class="symbol">.</span><span class="function">put</span><span class="symbol">(</span><span class="string">"Poland"</span><span class="symbol">,</span><span class="normal"> </span><span class="string">"Warsaw"</span><span class="symbol">);</span>
+<span class="normal">		capitals</span><span class="symbol">.</span><span class="function">put</span><span class="symbol">(</span><span class="string">"Spain"</span><span class="symbol">,</span><span class="normal"> </span><span class="string">"Madrid"</span><span class="symbol">);</span>
+
+<span class="normal">		</span><span class="keyword">return</span><span class="normal"> capitals</span><span class="symbol">;</span>
+<span class="normal">	</span><span class="cbracket">}</span>
+
+<span class="normal">	@Test</span>
+<span class="normal">	</span><span class="keyword">public</span><span class="normal"> </span><span class="type">void</span><span class="normal"> </span><span class="function">testBiMapCreationOnDuplicateValue</span><span class="symbol">()</span><span class="normal"> </span><span class="cbracket">{</span>
+<span class="normal">		</span><span class="comment">// given</span>
+<span class="normal">		</span><span class="usertype">HashBiMap&lt;String, String&gt;</span><span class="normal"> capitals </span><span class="symbol">=</span><span class="normal"> </span><span class="function">create</span><span class="symbol">();</span>
+<span class="normal">		thrown</span><span class="symbol">.</span><span class="function">expect</span><span class="symbol">(</span><span class="normal">IllegalArgumentException</span><span class="symbol">.</span><span class="keyword">class</span><span class="symbol">);</span>
+<span class="normal">		</span>
+<span class="normal">		</span><span class="comment">// when we put already existing value  </span>
+<span class="normal">		capitals</span><span class="symbol">.</span><span class="function">put</span><span class="symbol">(</span><span class="string">"Lithuania"</span><span class="symbol">,</span><span class="normal"> </span><span class="string">"Warsaw"</span><span class="symbol">);</span>
+<span class="normal">		</span>
+<span class="normal">		</span><span class="comment">// then test fails if no exception</span>
+<span class="normal">	</span><span class="cbracket">}</span>
+
+<span class="normal">	@Test</span>
+<span class="normal">	</span><span class="keyword">public</span><span class="normal"> </span><span class="type">void</span><span class="normal"> </span><span class="function">testBiMapInverse</span><span class="symbol">()</span><span class="normal"> </span><span class="cbracket">{</span>
+<span class="normal">		</span><span class="comment">// given</span>
+<span class="normal">		</span><span class="usertype">HashBiMap&lt;String, String&gt;</span><span class="normal"> capitals </span><span class="symbol">=</span><span class="normal"> </span><span class="function">create</span><span class="symbol">();</span>
+<span class="normal">		</span><span class="comment">// when inverting a BiMap</span>
+<span class="normal">		</span><span class="usertype">BiMap&lt;String, String&gt;</span><span class="normal"> inverse </span><span class="symbol">=</span><span class="normal"> capitals</span><span class="symbol">.</span><span class="function">inverse</span><span class="symbol">();</span>
+
+<span class="normal">		</span><span class="comment">// then we get inverted entries</span>
+<span class="normal">		</span><span class="function">assertThat</span><span class="symbol">(</span><span class="normal">inverse</span><span class="symbol">).</span><span class="function">includes</span><span class="symbol">(</span><span class="function">entry</span><span class="symbol">(</span><span class="string">"Warsaw"</span><span class="symbol">,</span><span class="normal"> </span><span class="string">"Poland"</span><span class="symbol">),</span>
+<span class="normal">				</span><span class="function">entry</span><span class="symbol">(</span><span class="string">"Berlin"</span><span class="symbol">,</span><span class="normal"> </span><span class="string">"Germany"</span><span class="symbol">));</span>
+<span class="normal">		</span><span class="comment">// some unreadable assertions that array are invers</span>
+<span class="normal">		</span><span class="function">assertThat</span><span class="symbol">(</span><span class="normal">inverse</span><span class="symbol">.</span><span class="function">keySet</span><span class="symbol">()).</span><span class="function">containsOnly</span><span class="symbol">(</span>
+<span class="normal">				</span><span class="symbol">(</span><span class="normal">Object</span><span class="symbol">[])</span><span class="normal"> capitals</span><span class="symbol">.</span><span class="function">values</span><span class="symbol">().</span><span class="function">toArray</span><span class="symbol">(</span>
+<span class="normal">						</span><span class="keyword">new</span><span class="normal"> String</span><span class="symbol">[</span><span class="normal">capitals</span><span class="symbol">.</span><span class="function">size</span><span class="symbol">()]));</span>
+
+<span class="normal">		</span><span class="function">assertThat</span><span class="symbol">(</span><span class="normal">inverse</span><span class="symbol">.</span><span class="function">values</span><span class="symbol">()).</span><span class="function">containsOnly</span><span class="symbol">(</span>
+<span class="normal">				</span><span class="symbol">(</span><span class="normal">Object</span><span class="symbol">[])</span><span class="normal"> capitals</span><span class="symbol">.</span><span class="function">keySet</span><span class="symbol">().</span><span class="function">toArray</span><span class="symbol">(</span>
+<span class="normal">						</span><span class="keyword">new</span><span class="normal"> String</span><span class="symbol">[</span><span class="normal">capitals</span><span class="symbol">.</span><span class="function">size</span><span class="symbol">()]));</span>
+<span class="normal">	</span><span class="cbracket">}</span>
+<span class="cbracket">}</span>
+</tt></pre>
+</body>
+</html>
