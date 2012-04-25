@@ -44,7 +44,7 @@ public class CharMatcherTest {
 		// when
 		phone = CharMatcher.anyOf("-+").removeFrom(phone);
 		// then
-		assertThat(phone).isEqualTo("48 517 725 068");
+		assertThat(phone).isEqualTo("48 517 725068");
 	}
 
 	@Test

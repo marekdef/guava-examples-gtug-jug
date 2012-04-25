@@ -1,4 +1,4 @@
-package org.gtug.lodz.collections;
+package org.gtug.collections;
 
 import java.util.Collections;
 import java.util.HashMap;

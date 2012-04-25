@@ -1,4 +1,4 @@
-package org.gtug.lodz.collections;
+package org.gtug.collections;
 
 import static org.fest.assertions.Assertions.assertThat;
 import static org.fest.assertions.MapAssert.entry;
