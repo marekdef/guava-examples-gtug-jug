@@ -1,20 +1,14 @@
 package org.gtug.lodz.collections;
 
-import java.util.AbstractMap;
-import java.util.Arrays;
-import java.util.Map.Entry;
+import static org.fest.assertions.Assertions.assertThat;
 
-import org.fest.util.Collections;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
-import org.mockito.internal.util.ArrayUtils;
 
 import com.google.common.collect.BiMap;
 import com.google.common.collect.HashBiMap;
-
-import static org.fest.assertions.Assertions.*;
 
 public class BiMapTest {
 	private HashBiMap<String, String> capitals;
