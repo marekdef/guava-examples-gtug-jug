@@ -1,5 +1,7 @@
 package org.gtug.lodz.guava.strings;
 
+import static org.fest.assertions.Assertions.assertThat;
+
 import java.util.Map;
 
 import org.junit.Test;
@@ -7,8 +9,6 @@ import org.junit.Test;
 import com.google.common.base.CharMatcher;
 import com.google.common.base.Splitter;
 import com.google.common.collect.Iterables;
-
-import static org.fest.assertions.Assertions.assertThat;
 
 public class SplitterTest {
 	@Test
