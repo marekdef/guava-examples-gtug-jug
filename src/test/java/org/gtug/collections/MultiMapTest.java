@@ -2,7 +2,6 @@ package org.gtug.collections;
 
 import static org.fest.assertions.Assertions.assertThat;
 
-import org.junit.Before;
 import org.junit.Test;
 
 import com.google.common.collect.HashMultimap;
@@ -30,11 +29,11 @@ public class MultiMapTest {
 
 	@Test
 	public void testMultiMapCreation() {
-		//given created map 
+		// given created map
 		HashMultimap<String, String> family = create();
-		//when
-		
-		//then is correcly created
+		// when
+
+		// then is correcly created
 		assertThat(family.get("Marek")).hasSize(1);
 		assertThat(family.get("Maria")).hasSize(2);
 		assertThat(family.get("Eugeniusz")).hasSize(2);
@@ -72,5 +71,4 @@ public class MultiMapTest {
 		assertThat(family.get(null)).hasSize(1);
 		assertThat(family.get(null)).containsOnly(new Object[] { null });
 	}
-
 }

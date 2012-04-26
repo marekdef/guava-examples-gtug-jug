@@ -41,8 +41,8 @@ public class MultiSetTest {
 		// when
 		words.add("GTUG", 2);
 		words.add("JUG");
-		
-		// using setCount to set count 
+
+		// using setCount to set count
 		words.setCount("GTUG", 0);
 		words.setCount("JUG", 5);
 

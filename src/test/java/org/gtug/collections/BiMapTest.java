@@ -29,10 +29,10 @@ public class BiMapTest {
 		// given
 		HashBiMap<String, String> capitals = create();
 		thrown.expect(IllegalArgumentException.class);
-		
-		// when we put already existing value  
+
+		// when we put already existing value
 		capitals.put("Lithuania", "Warsaw");
-		
+
 		// then test fails if no exception
 	}
 
