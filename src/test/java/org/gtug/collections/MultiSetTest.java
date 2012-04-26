@@ -6,12 +6,13 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
+import com.google.common.collect.HashMultiset;
+
 public class MultiSetTest {
 	@Rule
 	public ExpectedException thrown = ExpectedException.none();
 
-	private LegacyMultiSet<Object> words = // HashMultiset.create();
-	LegacyMultiSet.create();
+	private HashMultiset<Object> words = HashMultiset.create();
 
 	@Test
 	public void testMultiSetCounts() {
