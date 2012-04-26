@@ -77,6 +77,7 @@ public class TableTest {
 		assertThat(warsawColumn.keySet()).containsOnly("Paris", "London");
 		// london row updated in mixed mode is trully updated
 		assertThat(londonRow).hasSize(2);
+		assertThat(londonRow.keySet()).containsOnly("Istambul","Warsaw");
 		assertThat(distance.row("Paris")).hasSize(2);
 		assertThat(distance.get("Paris", "Warsaw")).isEqualTo(1365.91);
 	}
