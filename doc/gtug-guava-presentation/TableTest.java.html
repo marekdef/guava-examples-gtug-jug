@@ -2,16 +2,16 @@
     "http://www.w3.org/TR/REC-html40/strict.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
 <meta name="GENERATOR" content="GNU source-highlight 3.1.4
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite">
-<title>/home/marekdef/projects/guava-examples-gtug-jug/src/main/java/org/gtug/lodz/collections/TableTest.java</title>
+<title>/home/defecins/projects/guava-examples-gtug-jug/src/test/java/org/gtug/collections/TableTest.java</title>
 <link rel="stylesheet" href="source-highlight/sh_darkness.css" type="text/css">
 </head>
 <body>
-<pre><tt><span class="preproc">package</span><span class="normal"> org</span><span class="symbol">.</span><span class="normal">gtug</span><span class="symbol">.</span><span class="normal">lodz</span><span class="symbol">.</span><span class="normal">collections</span><span class="symbol">;</span>
+<pre><tt><span class="preproc">package</span><span class="normal"> org</span><span class="symbol">.</span><span class="normal">gtug</span><span class="symbol">.</span><span class="normal">collections</span><span class="symbol">;</span>
 
 <span class="preproc">import</span><span class="normal"> </span><span class="keyword">static</span><span class="normal"> org</span><span class="symbol">.</span><span class="normal">fest</span><span class="symbol">.</span><span class="normal">assertions</span><span class="symbol">.</span><span class="normal">Assertions</span><span class="symbol">.</span><span class="normal">assertThat</span><span class="symbol">;</span>
 
@@ -87,9 +87,10 @@ http://www.gnu.org/software/src-highlite">
 <span class="normal">		</span><span class="comment">// then barcelona is empty</span>
 <span class="normal">		</span><span class="function">assertThat</span><span class="symbol">(</span><span class="normal">barcelonaRow</span><span class="symbol">).</span><span class="function">isEmpty</span><span class="symbol">();</span>
 <span class="normal">		</span><span class="comment">// warsaw gets connection from London and Paris but not Barcelona</span>
-<span class="normal">		</span><span class="function">assertThat</span><span class="symbol">(</span><span class="normal">warsawColumn</span><span class="symbol">.</span><span class="function">keySet</span><span class="symbol">()).</span><span class="function">containsOnly</span><span class="symbol">(</span><span class="string">"Paris"</span><span class="symbol">,</span><span class="string">"London"</span><span class="symbol">);</span>
-<span class="normal">		</span><span class="comment">// london row updated in mixed mode is trully updated </span>
+<span class="normal">		</span><span class="function">assertThat</span><span class="symbol">(</span><span class="normal">warsawColumn</span><span class="symbol">.</span><span class="function">keySet</span><span class="symbol">()).</span><span class="function">containsOnly</span><span class="symbol">(</span><span class="string">"Paris"</span><span class="symbol">,</span><span class="normal"> </span><span class="string">"London"</span><span class="symbol">);</span>
+<span class="normal">		</span><span class="comment">// london row updated in mixed mode is trully updated</span>
 <span class="normal">		</span><span class="function">assertThat</span><span class="symbol">(</span><span class="normal">londonRow</span><span class="symbol">).</span><span class="function">hasSize</span><span class="symbol">(</span><span class="number">2</span><span class="symbol">);</span>
+<span class="normal">		</span><span class="function">assertThat</span><span class="symbol">(</span><span class="normal">londonRow</span><span class="symbol">.</span><span class="function">keySet</span><span class="symbol">()).</span><span class="function">containsOnly</span><span class="symbol">(</span><span class="string">"Istambul"</span><span class="symbol">,</span><span class="string">"Warsaw"</span><span class="symbol">);</span>
 <span class="normal">		</span><span class="function">assertThat</span><span class="symbol">(</span><span class="normal">distance</span><span class="symbol">.</span><span class="function">row</span><span class="symbol">(</span><span class="string">"Paris"</span><span class="symbol">)).</span><span class="function">hasSize</span><span class="symbol">(</span><span class="number">2</span><span class="symbol">);</span>
 <span class="normal">		</span><span class="function">assertThat</span><span class="symbol">(</span><span class="normal">distance</span><span class="symbol">.</span><span class="function">get</span><span class="symbol">(</span><span class="string">"Paris"</span><span class="symbol">,</span><span class="normal"> </span><span class="string">"Warsaw"</span><span class="symbol">)).</span><span class="function">isEqualTo</span><span class="symbol">(</span><span class="number">1365.91</span><span class="symbol">);</span>
 <span class="normal">	</span><span class="cbracket">}</span>
