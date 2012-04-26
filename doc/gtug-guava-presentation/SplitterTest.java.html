@@ -2,12 +2,12 @@
     "http://www.w3.org/TR/REC-html40/strict.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
 <meta name="GENERATOR" content="GNU source-highlight 3.1.4
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite">
-<title>/home/marekdef/projects/guava-examples-gtug-jug/src/main/java/org/gtug/lodz/guava/strings/SplitterTest.java</title>
+<title>/home/defecins/projects/guava-examples-gtug-jug/src/test/java/org/gtug/lodz/guava/strings/SplitterTest.java</title>
 <link rel="stylesheet" href="source-highlight/sh_darkness.css" type="text/css">
 </head>
 <body>
@@ -73,12 +73,11 @@ http://www.gnu.org/software/src-highlite">
 <span class="normal">	@Test</span>
 <span class="normal">	</span><span class="keyword">public</span><span class="normal"> </span><span class="type">void</span><span class="normal"> </span><span class="function">testSplitWithKeyValue</span><span class="symbol">()</span><span class="normal"> </span><span class="cbracket">{</span>
 <span class="normal">		</span><span class="comment">// given like map</span>
-<span class="normal">		</span><span class="usertype">String</span><span class="normal"> python </span><span class="symbol">=</span><span class="normal"> </span><span class="string">"{'jack': 4098, 'sape': 4139}"</span><span class="symbol">.</span><span class="function">replace</span><span class="symbol">(</span><span class="string">"{"</span><span class="symbol">,</span><span class="normal"> </span><span class="string">""</span><span class="symbol">)</span>
-<span class="normal">				</span><span class="symbol">.</span><span class="function">replace</span><span class="symbol">(</span><span class="string">"}"</span><span class="symbol">,</span><span class="normal"> </span><span class="string">""</span><span class="symbol">).</span><span class="function">replace</span><span class="symbol">(</span><span class="string">"'"</span><span class="symbol">,</span><span class="normal"> </span><span class="string">""</span><span class="symbol">);</span>
+<span class="normal">		</span><span class="usertype">String</span><span class="normal"> python </span><span class="symbol">=</span><span class="normal"> </span><span class="string">"{'jack': 4098, 'sape': 4139}"</span><span class="symbol">;</span>
 <span class="normal">		</span><span class="comment">// when we use map splitter</span>
-<span class="normal">		</span><span class="usertype">Map&lt;String, String&gt;</span><span class="normal"> split </span><span class="symbol">=</span><span class="normal"> Splitter</span><span class="symbol">.</span><span class="function">on</span><span class="symbol">(</span><span class="string">","</span><span class="symbol">)</span>
-<span class="normal">				</span><span class="symbol">.</span><span class="function">trimResults</span><span class="symbol">(</span><span class="normal">CharMatcher</span><span class="symbol">.</span><span class="function">anyOf</span><span class="symbol">(</span><span class="string">"' {}"</span><span class="symbol">))</span>
-<span class="normal">				</span><span class="symbol">.</span><span class="function">withKeyValueSeparator</span><span class="symbol">(</span><span class="string">":"</span><span class="symbol">).</span><span class="function">split</span><span class="symbol">(</span><span class="normal">python</span><span class="symbol">);</span>
+<span class="normal">		</span><span class="usertype">Map&lt;String, String&gt;</span><span class="normal"> split </span><span class="symbol">=</span><span class="normal"> Splitter</span><span class="symbol">.</span><span class="function">on</span><span class="symbol">(</span><span class="string">","</span><span class="symbol">).</span><span class="function">trimResults</span><span class="symbol">()</span>
+<span class="normal">				</span><span class="symbol">.</span><span class="function">withKeyValueSeparator</span><span class="symbol">(</span><span class="string">":"</span><span class="symbol">)</span>
+<span class="normal">				</span><span class="symbol">.</span><span class="function">split</span><span class="symbol">(</span><span class="normal">CharMatcher</span><span class="symbol">.</span><span class="function">anyOf</span><span class="symbol">(</span><span class="string">"' {}"</span><span class="symbol">).</span><span class="function">removeFrom</span><span class="symbol">(</span><span class="normal">python</span><span class="symbol">));</span>
 <span class="normal">		</span><span class="comment">// then we get a correct size of map</span>
 <span class="normal">		</span><span class="function">assertThat</span><span class="symbol">(</span><span class="normal">split</span><span class="symbol">).</span><span class="function">hasSize</span><span class="symbol">(</span><span class="number">2</span><span class="symbol">);</span>
 <span class="normal">		</span><span class="comment">// with good keys</span>
