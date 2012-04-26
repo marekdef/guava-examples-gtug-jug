@@ -45,7 +45,7 @@ public class BiMapTest {
 
 		// then we get inverted entries
 		assertThat(inverse).includes(entry("Warsaw", "Poland"),
-				entry("Berlin", "Germany"));
+				entry("Berlin", "Germany"), entry("Spain", "Madrid"));
 		// some unreadable assertions that array are invers
 		assertThat(inverse.keySet()).containsOnly(
 				(Object[]) capitals.values().toArray(
