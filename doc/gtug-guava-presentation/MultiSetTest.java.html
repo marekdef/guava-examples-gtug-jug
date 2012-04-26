@@ -2,16 +2,16 @@
     "http://www.w3.org/TR/REC-html40/strict.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
 <meta name="GENERATOR" content="GNU source-highlight 3.1.4
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite">
-<title>/home/marekdef/projects/guava-examples-gtug-jug/src/main/java/org/gtug/lodz/collections/MultiSetTest.java</title>
+<title>/home/defecins/projects/guava-examples-gtug-jug/src/test/java/org/gtug/collections/MultiSetTest.java</title>
 <link rel="stylesheet" href="source-highlight/sh_darkness.css" type="text/css">
 </head>
 <body>
-<pre><tt><span class="preproc">package</span><span class="normal"> org</span><span class="symbol">.</span><span class="normal">gtug</span><span class="symbol">.</span><span class="normal">lodz</span><span class="symbol">.</span><span class="normal">collections</span><span class="symbol">;</span>
+<pre><tt><span class="preproc">package</span><span class="normal"> org</span><span class="symbol">.</span><span class="normal">gtug</span><span class="symbol">.</span><span class="normal">collections</span><span class="symbol">;</span>
 
 <span class="preproc">import</span><span class="normal"> </span><span class="keyword">static</span><span class="normal"> org</span><span class="symbol">.</span><span class="normal">fest</span><span class="symbol">.</span><span class="normal">assertions</span><span class="symbol">.</span><span class="normal">Assertions</span><span class="symbol">.</span><span class="normal">assertThat</span><span class="symbol">;</span>
 
@@ -19,12 +19,13 @@ http://www.gnu.org/software/src-highlite">
 <span class="preproc">import</span><span class="normal"> org</span><span class="symbol">.</span><span class="normal">junit</span><span class="symbol">.</span><span class="normal">Test</span><span class="symbol">;</span>
 <span class="preproc">import</span><span class="normal"> org</span><span class="symbol">.</span><span class="normal">junit</span><span class="symbol">.</span><span class="normal">rules</span><span class="symbol">.</span><span class="normal">ExpectedException</span><span class="symbol">;</span>
 
+<span class="preproc">import</span><span class="normal"> com</span><span class="symbol">.</span><span class="normal">google</span><span class="symbol">.</span><span class="normal">common</span><span class="symbol">.</span><span class="normal">collect</span><span class="symbol">.</span><span class="normal">HashMultiset</span><span class="symbol">;</span>
+
 <span class="keyword">public</span><span class="normal"> </span><span class="keyword">class</span><span class="normal"> </span><span class="classname">MultiSetTest</span><span class="normal"> </span><span class="cbracket">{</span>
 <span class="normal">	@Rule</span>
 <span class="normal">	</span><span class="keyword">public</span><span class="normal"> </span><span class="usertype">ExpectedException</span><span class="normal"> thrown </span><span class="symbol">=</span><span class="normal"> ExpectedException</span><span class="symbol">.</span><span class="function">none</span><span class="symbol">();</span>
 
-<span class="normal">	</span><span class="keyword">private</span><span class="normal"> </span><span class="usertype">LegacyMultiSet&lt;Object&gt;</span><span class="normal"> words </span><span class="symbol">=</span><span class="normal"> </span><span class="comment">// HashMultiset.create();</span>
-<span class="normal">	LegacyMultiSet</span><span class="symbol">.</span><span class="function">create</span><span class="symbol">();</span>
+<span class="normal">	</span><span class="keyword">private</span><span class="normal"> </span><span class="usertype">HashMultiset&lt;Object&gt;</span><span class="normal"> words </span><span class="symbol">=</span><span class="normal"> HashMultiset</span><span class="symbol">.</span><span class="function">create</span><span class="symbol">();</span>
 
 <span class="normal">	@Test</span>
 <span class="normal">	</span><span class="keyword">public</span><span class="normal"> </span><span class="type">void</span><span class="normal"> </span><span class="function">testMultiSetCounts</span><span class="symbol">()</span><span class="normal"> </span><span class="cbracket">{</span>
@@ -54,8 +55,8 @@ http://www.gnu.org/software/src-highlite">
 <span class="normal">		</span><span class="comment">// when</span>
 <span class="normal">		words</span><span class="symbol">.</span><span class="function">add</span><span class="symbol">(</span><span class="string">"GTUG"</span><span class="symbol">,</span><span class="normal"> </span><span class="number">2</span><span class="symbol">);</span>
 <span class="normal">		words</span><span class="symbol">.</span><span class="function">add</span><span class="symbol">(</span><span class="string">"JUG"</span><span class="symbol">);</span>
-<span class="normal">		</span>
-<span class="normal">		</span><span class="comment">// using setCount to set count </span>
+
+<span class="normal">		</span><span class="comment">// using setCount to set count</span>
 <span class="normal">		words</span><span class="symbol">.</span><span class="function">setCount</span><span class="symbol">(</span><span class="string">"GTUG"</span><span class="symbol">,</span><span class="normal"> </span><span class="number">0</span><span class="symbol">);</span>
 <span class="normal">		words</span><span class="symbol">.</span><span class="function">setCount</span><span class="symbol">(</span><span class="string">"JUG"</span><span class="symbol">,</span><span class="normal"> </span><span class="number">5</span><span class="symbol">);</span>
 
