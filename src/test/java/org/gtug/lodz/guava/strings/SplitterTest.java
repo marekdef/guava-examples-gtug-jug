@@ -60,12 +60,11 @@ public class SplitterTest {
 	@Test
 	public void testSplitWithKeyValue() {
 		// given like map
-		String python = "{'jack': 4098, 'sape': 4139}".replace("{", "")
-				.replace("}", "").replace("'", "");
+		String python = "{'jack': 4098, 'sape': 4139}";
 		// when we use map splitter
-		Map<String, String> split = Splitter.on(",")
-				.trimResults(CharMatcher.anyOf("' {}"))
-				.withKeyValueSeparator(":").split(python);
+		Map<String, String> split = Splitter.on(",").trimResults()
+				.withKeyValueSeparator(":")
+				.split(CharMatcher.anyOf("' {}").removeFrom(python));
 		// then we get a correct size of map
 		assertThat(split).hasSize(2);
 		// with good keys
