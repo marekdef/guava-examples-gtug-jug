@@ -20,6 +20,7 @@ public class LegacyImmutableSet {
 	}
 
 	static {
+		//COUNTRIES = 
 		Collections.unmodifiableSet(new HashSet<String>(Arrays.asList("Poland",
 				"Germany", "France", "Spain", "Greece")));
 	}
